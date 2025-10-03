@@ -1,13 +1,13 @@
 /* === NAVBAR ESTILO MODERNO === */
 .navbar-custom {
-  background-color: #1A1A1A;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  background-color: #aa0000;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
   padding: 0.5rem 1rem;
 }
 
 /* Enlaces del navbar */
 .navbar-custom .nav-link {
-  color: #FFFFFF;
+  color: #ffffff;
   margin: 0 0.5rem;
   padding: 8px 16px;
   border-radius: 20px;
@@ -17,15 +17,15 @@
 
 /* Hover interactivo */
 .navbar-custom .nav-link:hover {
-  background-color: #FFD700;
-  color: #1A1A1A;
+  background-color: #ffffff;
+  color: #ffffff;
 }
 
 /* Enlace activo visualmente como botón */
 .navbar-custom .nav-link.active {
-  background-color: #FFD700;
+  background-color: #ffffff;
   color: #1A1A1A !important;
-  box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+  box-shadow: 0 0 10px rgba(247, 247, 247, 0.5);
   border-radius: 20px;
   padding: 8px 16px;
   font-weight: 600;
@@ -33,20 +33,20 @@
 
 /* Botón de búsqueda */
 .btn-outline-light {
-  color: #FFFFFF;
-  border-color: #FFFFFF;
+  color: #ffffff;
+  border-color: #bababa;
   transition: all 0.3s ease;
 }
 
 .btn-outline-light:hover {
-  background-color: #FFD700;
+  background-color: #000000;
   color: #1A1A1A;
-  border-color: #FFD700;
+  border-color: #000000;
 }
 
 /* Estilo para el input de búsqueda */
 .form-control::placeholder {
-  color: #CCCCCC;
+  color: #ffffff;
 }
 
 .form-control {
@@ -57,6 +57,26 @@
 }
 
 .form-control:focus {
-  border-color: #FFD700;
-  box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+  border-color: #000000;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.navbar-brand{
+  color: #ffffff;
+}
+
+footer {
+  display: block;
+  background-color: #a40000;
+
+}
+.carousel-indicators{
+  
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+
+  width: 100px; /* Tamaño fijo para cada imagen */
+  height: 100px; /* Altura fija */
+
 }
