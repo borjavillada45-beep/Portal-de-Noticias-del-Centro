@@ -1,82 +1,111 @@
-/* === NAVBAR ESTILO MODERNO === */
-.navbar-custom {
-  background-color: #aa0000;
-  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
-  padding: 0.5rem 1rem;
-}
 
-/* Enlaces del navbar */
-.navbar-custom .nav-link {
-  color: #ffffff;
-  margin: 0 0.5rem;
-  padding: 8px 16px;
-  border-radius: 20px;
-  transition: all 0.3s ease;
-  font-weight: 500;
-}
 
-/* Hover interactivo */
-.navbar-custom .nav-link:hover {
-  background-color: #ffffff;
-  color: #ffffff;
-}
+  .navbar-custom {
+    background: linear-gradient(90deg, #aa0000, #d32f2f);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
 
-/* Enlace activo visualmente como botón */
-.navbar-custom .nav-link.active {
-  background-color: #ffffff;
-  color: #1A1A1A !important;
-  box-shadow: 0 0 10px rgba(247, 247, 247, 0.5);
-  border-radius: 20px;
-  padding: 8px 16px;
-  font-weight: 600;
-}
+  .navbar-custom .nav-link {
+    color: #fff !important;
+    margin: 0 0.5rem;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
 
-/* Botón de búsqueda */
-.btn-outline-light {
-  color: #ffffff;
-  border-color: #bababa;
-  transition: all 0.3s ease;
-}
+  .navbar-custom .nav-link:hover {
+    background-color: #fff;
+    color: #aa0000 !important;
+    transform: scale(1.05);
+  }
 
-.btn-outline-light:hover {
-  background-color: #000000;
-  color: #1A1A1A;
-  border-color: #000000;
-}
+  .navbar-custom .nav-link.active {
+    background-color: #fff;
+    color: #aa0000 !important;
+    font-weight: 600;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+  }
 
-/* Estilo para el input de búsqueda */
-.form-control::placeholder {
-  color: #ffffff;
-}
-
-.form-control {
-  background-color: #2A2A2A;
-  color: #FFFFFF;
-  border: 1px solid #444;
-  transition: border-color 0.3s ease;
-}
-
-.form-control:focus {
-  border-color: #000000;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-}
-
-.navbar-brand{
-  color: #ffffff;
-}
-
-footer {
-  display: block;
-  background-color: #a40000;
-
-}
-.carousel-indicators{
+  .navbar-brand {
+    font-weight: bold;
+    color: #fff !important;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
   
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
+.navbar-brand img {
+  width: 110px;
+  height: 110px;
+}
+  .navbar-custom
+  .navbar-brand  {
+    width: 50px;
+    height: 50px;
+  }
 
-  width: 100px; /* Tamaño fijo para cada imagen */
-  height: 100px; /* Altura fija */
+  /* Icono hamburguesa en blanco */
+  .navbar-toggler {
+    border: none;
+  }
 
+  .navbar-toggler-icon {
+    filter: invert(1);
+  }
+
+
+.carousel-item {
+  height: 800px;
+}
+
+/* Centrar cards y añadir espacio lateral */
+.container {
+  max-width: 1200px; /* evita que las cards lleguen al borde */
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* Estilo de las cards de noticias */
+.news-card {
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Imagen de la card */
+.news-card img {
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+/* Hover sobre la card */
+.news-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+.news-card:hover img {
+  transform: scale(1.05);
+}
+
+/* Títulos y texto */
+.news-card .card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.news-card .card-text {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+/* Botón */
+.news-card .btn {
+  border-radius: 20px;
+  font-weight: 500;
 }
