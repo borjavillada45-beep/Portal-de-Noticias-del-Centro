@@ -1,1 +1,108 @@
+<<<<<<< HEAD
 
+=======
+
+
+  .navbar-custom {
+    background: linear-gradient(90deg, #aa0000, #d32f2f);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .navbar-custom .nav-link {
+    color: #fff !important;
+    margin: 0 0.5rem;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+
+  .navbar-custom .nav-link:hover {
+    background-color: #fff;
+    color: #aa0000 !important;
+    transform: scale(1.05);
+  }
+
+  .navbar-custom .nav-link.active {
+    background-color: #fff;
+    color: #aa0000 !important;
+    font-weight: 600;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+  }
+
+  .navbar-brand {
+    font-weight: bold;
+    color: #fff !important;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+.navbar-brand img {
+  width: 110px;
+  height: 110px;
+}
+  .navbar-custom
+  .navbar-brand  {
+    width: 50px;
+    height: 50px;
+  }
+
+  .navbar-toggler {
+    border: none;
+  }
+
+  .navbar-toggler-icon {
+    filter: invert(1);
+  }
+
+
+.carousel-item {
+  height: 800px;
+}
+
+.container {
+  max-width: 1200px; 
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.news-card {
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.news-card img {
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.news-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+.news-card:hover img {
+  transform: scale(1.05);
+}
+
+.news-card .card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.news-card .card-text {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.news-card .btn {
+  border-radius: 20px;
+  font-weight: 500;
+}
+>>>>>>> 25c8e65bf1b037ec0957e158959d0b73de8276bc
