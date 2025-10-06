@@ -1,11 +1,11 @@
-<<<<<<< HEAD
-
-=======
 
 
   .navbar-custom {
     background: linear-gradient(90deg, #aa0000, #d32f2f);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+  .footer.custom {
+    background: linear-gradient(90deg, #aa0000, #d32f2f);
   }
 
   .navbar-custom .nav-link {
@@ -105,4 +105,6 @@
   border-radius: 20px;
   font-weight: 500;
 }
->>>>>>> 25c8e65bf1b037ec0957e158959d0b73de8276bc
+.footer-custom {
+    background: linear-gradient(90deg, #aa0000, #d32f2f);
+  }
