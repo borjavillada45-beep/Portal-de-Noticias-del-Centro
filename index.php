@@ -21,7 +21,7 @@ $paginaActiva = "inicio";
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="index.php">
+            <a class="navbar-brand justify-content-center w-150" href="index.php">
                 <img src="img/logo.svg" alt="Logo"> Arangoya News
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -29,7 +29,7 @@ $paginaActiva = "inicio";
             </button>
 
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
+                <ul class="navbar-nav justify-content-center w-100">
                     <li class="nav-item">
                         <a class="nav-link <?php echo ($paginaActiva == 'inicio') ? 'active' : ''; ?>"
                             href="index.php">Inicio</a>
