@@ -39,7 +39,7 @@ $paginaActiva = "inicio";
                     </li>
                     <li class="nav-item">
                         <a class="nav-link <?php echo ($paginaActiva == 'crear') ? 'active' : ''; ?>"
-                            href="Noticias/noticiaDos.php">Añadir Noticia</a>
+                            href="addNoticia.php">Añadir Noticia</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link <?php echo ($paginaActiva == 'tecnologia') ? 'active' : ''; ?>"
