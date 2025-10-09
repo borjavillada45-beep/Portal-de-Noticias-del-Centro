@@ -12,17 +12,26 @@ $paginaActiva = "crear";
     <title>Mini Portal de Noticias</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-        <!-- Bootstrap 5 CSS -->
+    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- CSS personalizado -->
     <link rel="stylesheet" href="style.css">
+
+
+    <!-- Flatpickr Calendario -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>S
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/l10n/es.js"></script>
+
+
+
 </head>
 
 <body>
-    
+
     <!-- ===== NAVBAR ===== -->
-    <nav class="navbar navbar-expand-lg fixed-top" id="navbar">
+    <nav class="navbar navbar-expand-lg fixed-top navbar2" id="navbar2">
         <div class="container">
             <a class="navbar-brand text-white fw-bold" href="#"></a>
             <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse"
@@ -33,11 +42,11 @@ $paginaActiva = "crear";
             <div class="collapse navbar-collapse justify-content-center w-125" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link text-white" href="index.php">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="#">Destacado</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="#">DAW2</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="#">Arangoya</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="addNoticia.php">Formulario</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="#">Soporte</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="Noticias/noticiaUno.php">Destacado</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="Noticias/noticiaUno.php">DAW2</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="Noticias/noticiaUno.php">Arangoya</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="Noticias/noticiaUno.php">Formulario</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="addNoticia.php">Soporte</a></li>
 
                 </ul>
             </div>
@@ -52,30 +61,30 @@ $paginaActiva = "crear";
             <form>
                 <div class="mb-3">
                     <label class="form-label">Titulo</label>
-                    <input type="text" class="form-control" id="titulo">
+                    <input type="text" class="form-control titulo" id="titulo">
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Autor</label>
-                    <input type="text" class="form-control" id="autor">
+                    <input type="text" class="form-control autor" id="autor">
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Fecha</label>
-                    <input type="date" class="form-control" id="fecha">
+                    <input type="text" class="form-control fecha" id="fecha">
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Noticia</label>
                     <textarea class="form-control" id="noticia" rows="5"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary mi-boton">Enviar</button>
+                <button type="submit" class="btn btn-primary mi-boton" id="boton">Enviar</button>
             </form>
 
         </form>
 
     </div>
 
- <!-- ===== FOOTER CON COLUMNAS ===== -->
+    <!-- ===== FOOTER CON COLUMNAS ===== -->
     <footer class="footer footer-columns py-5">
         <div class="container">
             <div class="row text-white">
@@ -110,6 +119,10 @@ $paginaActiva = "crear";
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- JavaCript -->
+    <script src="script.js"></script>
+
+
 </body>
 
 </html>

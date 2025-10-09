@@ -8,3 +8,10 @@ window.addEventListener('scroll', () => {
     navbar.classList.remove('scrolled');
   }
 });
+
+//Para el nuevo calendario
+flatpickr("#fecha", {
+  dateFormat: "Y-m-d",
+  //Elegir idioma
+  locale: "es"
+});
