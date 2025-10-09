@@ -167,6 +167,21 @@ body {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+/*--CSS addNoticia.php--*/
+.mi-boton{
+  margin-bottom: 10px;
+  background:  #c52b2b;
+  
+}
+.mi-boton:hover{
+  background-color: #333;
+      box-shadow: 
+        0 8px 25px rgba(178, 34, 34, 0.6), /* sombra principal */
+        0 0 20px rgba(178, 34, 34, 0.5),    /* glow rojo */
+        0 0 20px rgba(178, 34, 34, 0.3);    /* halo más difuso */
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
 /* ===== FOOTER COLUMNS ===== */
 .footer-columns {
     background: #c52b2b;

@@ -12,43 +12,39 @@ $paginaActiva = "crear";
     <title>Mini Portal de Noticias</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+        <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
+    <!-- CSS personalizado -->
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-
-    <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+    
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar navbar-expand-lg fixed-top" id="navbar">
         <div class="container">
-            <a class="navbar-brand" href="index.php">
-                <img src="img/logo.svg" alt="Logo"> Noticias
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <a class="navbar-brand text-white fw-bold" href="#"></a>
+            <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link <?php echo ($paginaActiva == 'inicio') ? 'active' : ''; ?>"
-                            href="index.php">Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link <?php echo ($paginaActiva == 'noticias') ? 'active' : ''; ?>"
-                            href="Noticias/noticiaUno.php">Noticias</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link <?php echo ($paginaActiva == 'crear') ? 'active' : ''; ?>"
-                            href="Noticias/noticiaDos.php">Añadir Noticia</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link <?php echo ($paginaActiva == 'tecnologia') ? 'active' : ''; ?>"
-                            href="Noticias/noticiaTres.php">Tecnología</a>
-                    </li>
+            <div class="collapse navbar-collapse justify-content-center w-125" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link text-white" href="index.php">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#">Destacado</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#">DAW2</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#">Arangoya</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="addNoticia.php">Formulario</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#">Soporte</a></li>
+
                 </ul>
             </div>
         </div>
     </nav>
+
+    <!--Formulario-->
 
     <div class="container mt-5 pt-5">
         <h2 class="mb-3">Añadir Nueva Noticia</h2>
@@ -72,17 +68,45 @@ $paginaActiva = "crear";
                     <label class="form-label">Noticia</label>
                     <textarea class="form-control" id="noticia" rows="5"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary bg-danger">Enviar</button>
+                <button type="submit" class="btn btn-primary mi-boton">Enviar</button>
             </form>
 
         </form>
 
     </div>
 
-    <!-- Footer -->
-    <footer class="bg-dark text-white text-center py-3">
-        &copy; <?php echo date("Y"); ?> Mini Portal de Noticias
+ <!-- ===== FOOTER CON COLUMNAS ===== -->
+    <footer class="footer footer-columns py-5">
+        <div class="container">
+            <div class="row text-white">
+                <!-- Columna 1: Logo / info -->
+                <div class="col-md-4 mb-3">
+                    <h5>MiSitio</h5>
+                    <p>Transformando ideas en soluciones digitales.</p>
+                </div>
+
+                <!-- Columna 2: Enlaces -->
+                <div class="col-md-4 mb-3">
+                    <h5>Enlaces</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Inicio</a></li>
+                        <li><a href="#">Servicios</a></li>
+                        <li><a href="#">Portafolio</a></li>
+                        <li><a href="#">Contacto</a></li>
+                    </ul>
+                </div>
+
+                <!-- Columna 3: Redes sociales -->
+                <div class="col-md-4 mb-3">
+                    <h5>Síguenos</h5>
+                    <a href="#" class="me-2">🐦</a>
+                    <a href="#" class="me-2">📘</a>
+                    <a href="#">📸</a>
+                </div>
+            </div>
+        </div>
     </footer>
+
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
