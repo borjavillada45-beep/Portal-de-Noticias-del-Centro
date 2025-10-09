@@ -4,14 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
-    <title>Arangoya News</title>
-    <link rel="icon" href="img/logo.png">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-=======
     <title>Sitio Moderno</title>
->>>>>>> f75a56800a94d6a74ccf2a99ea33567326d2ea98
 
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -25,33 +18,6 @@
     <!-- ===== NAVBAR ===== -->
     <nav class="navbar navbar-expand-lg fixed-top" id="navbar">
         <div class="container">
-<<<<<<< HEAD
-            <a class="navbar-brand justify-content-center w-150" href="index.php">
-                <img src="img/logo.svg" alt="Logo"> Arangoya News
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav justify-content-center w-100">
-                    <li class="nav-item">
-                        <a class="nav-link <?php echo ($paginaActiva == 'inicio') ? 'active' : ''; ?>"
-                            href="index.php">Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link <?php echo ($paginaActiva == 'noticias') ? 'active' : ''; ?>"
-                            href="Noticias/noticiaUno.php">Noticias</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link <?php echo ($paginaActiva == 'crear') ? 'active' : ''; ?>"
-                            href="Noticias/noticiaDos.php">Añadir Noticia</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link <?php echo ($paginaActiva == 'tecnologia') ? 'active' : ''; ?>"
-                            href="Noticias/noticiaTres.php">Tecnología</a>
-                    </li>
-=======
             <a class="navbar-brand text-white fw-bold" href="#"></a>
             <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarNav">
@@ -61,13 +27,12 @@
             <div class="collapse navbar-collapse justify-content-center w-125" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link text-white" href="#">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="#">Destacado</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="Destaca">Destacado</a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="#">DAW2</a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="#">Arangoya</a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="#">Formulario</a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="#">Soporte</a></li>
 
->>>>>>> f75a56800a94d6a74ccf2a99ea33567326d2ea98
                 </ul>
             </div>
         </div>
@@ -202,30 +167,6 @@
                 </div>
             </div>
         </div>
-<<<<<<< HEAD
-
-        <!-- Card 3 -->
-        <div class="col-md-4">
-            <div class="card news-card h-100">
-                <img src="img/IMAGEN.jpg" class="card-img-top" alt="Noticia 3">
-                <div class="card-body d-flex flex-column">
-                    <h5 class="card-title">Título de Noticia 3</h5>
-                    <p class="card-text text-truncate">Resumen breve de la noticia tres. Mantén el texto corto para que todas las cards tengan altura uniforme.</p>
-                    <p class="text-muted mb-2"><small>Autor: Carlos García | 01/10/2025</small></p>
-                    <a href="Noticias/noticiaTres.php" class="btn btn-primary mt-auto">Leer más</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</main>
-
-
-
-    <!-- Footer -->
-    <footer class="bg-dark text-white text-center py-3 footer-custom fixed-bottom">
-        &copy; <?php echo date("Y"); ?> Portal de noticias Arangoya
-=======
->>>>>>> f75a56800a94d6a74ccf2a99ea33567326d2ea98
     </footer>
 
     <!-- Bootstrap 5 JS -->
