@@ -57,29 +57,29 @@ $paginaActiva = "crear";
 
     <div class="container mt-5 pt-5">
         <h2 class="mb-3">Añadir Nueva Noticia</h2>
-        <form action="procesarNoticia.php" method="POST" enctype="multipart/form-data">
-            <form>
-                <div class="mb-3">
-                    <label class="form-label">Titulo</label>
-                    <input type="text" class="form-control titulo" id="titulo">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Autor</label>
-                    <input type="text" class="form-control autor" id="autor">
-                </div>
+        <?php if ($error): ?>
+            <div class="alert alert-danger"><?= $error ?></div>
+        <?php endif; ?>
+        <form method="POST" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label class="form-label">Titulo</label>
+                <input type="text" class="form-control titulo" id="titulo" name="titulo" value="<?= htmlspecialchars($_POST['titulo'] ?? '')?>" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Autor</label>
+                <input type="text" class="form-control autor" id="autor" name="autor" value="<?= htmlspecialchars($_POST['autor'] ?? '')?>" required>
+            </div>
 
-                <div class="mb-3">
-                    <label class="form-label">Fecha</label>
-                    <input type="text" class="form-control fecha" id="fecha">
-                </div>
+            <div class="mb-3">
+                <label class="form-label">Fecha</label>
+                <input type="text" class="form-control fecha" id="fecha" name="fecha" value="<?= htmlspecialchars($_POST['fecha'] ?? '')?>" required>
+            </div>
 
-                <div class="mb-3">
-                    <label class="form-label">Noticia</label>
-                    <textarea class="form-control" id="noticia" rows="5"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary mi-boton" id="boton">Enviar</button>
-            </form>
-
+            <div class="mb-3">
+                <label class="form-label">Noticia</label>
+                <textarea class="form-control" id="noticia" rows="5" name="noticia" required><?= htmlspecialchars($_POST['noticia'] ?? '')?></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary mi-boton" id="boton" onclick="addNoticia()">Enviar</button>
         </form>
 
     </div>

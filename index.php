@@ -1,3 +1,123 @@
+<?php
+
+session_start();
+// Esta variable de sesión simula una base de datos de noticias y hace que no se pierdan los datos al recargar la página.
+$_SESSION['noticias'] = [
+    [
+        'id' => 1,
+        'titulo' => 'Noticia 1',
+        'autor' => 'Autor 1',
+        'fecha' => '2025-10-01',
+        'texto' => 'Descubre qué está pasando en el mundo. Esta es la noticia número uno.'
+    ],
+    [
+        'id' => 2,
+        'titulo' => 'Card 2',
+        'autor' => 'Autor 2',
+        'fecha' => '2025-09-15',
+        'texto' => 'Descripción del card 2. Segunda noticia interesante.'
+    ],
+    [
+        'id' => 3,
+        'titulo' => 'Card 3',
+        'autor' => 'Autor 3',
+        'fecha' => '2025-08-20',
+        'texto' => 'Descripción del card 3. Tercera noticia para mostrar.'
+    ]
+];
+// -- Funciones --
+function extracto($texto, $long = 50)
+{
+    return strlen($texto) > $long ? substr($texto, 0, $long) . "..." : $texto;
+}
+function addNoticia($titulo, $autor, $fecha, $noticia)
+{
+    $id = count($_SESSION['noticias']) + 1;
+    $_SESSION['noticias'][] = [
+        'id' => $id,
+        'titulo' => $titulo,
+        'autor' => $autor,
+        'fecha' => $fecha,
+        'texto' => $noticia
+    ];
+}
+
+// --- Filtros y orden ---
+$filtrarTexto = trim($_GET['buscar'] ?? '');
+$filtrarMes = trim($_GET['mes'] ?? '');
+$ordenar = isset($_GET['ordenar']) ? true : false;
+
+// --- Filtrar noticias ---
+$noticias = $_SESSION['noticias'];
+if ($filtrarTexto) {
+    $noticias = array_filter($noticias, function ($n) use ($filtrarTexto) {
+        return stripos($n['titulo'], $filtrarTexto) !== false || stripos($n['texto'], $filtrarTexto) !== false;
+    });
+}
+if ($filtrarMes) {
+    $noticias = array_filter($noticias, function ($n) use ($filtrarMes) {
+        return substr($n['fecha'], 5, 2) === $filtrarMes;
+    });
+}
+if ($ordenar) {
+    usort($noticias, function ($a, $b) {
+        return strcmp($b['fecha'], $a['fecha']);
+    });
+}
+
+// --- Transformar título a mayúsculas ---
+if (isset($_GET['mayus']) && isset($_GET['id'])) {
+    foreach ($_SESSION['noticias'] as &$n) {
+        if ($n['id'] == $_GET['id']) {
+            $n['titulo'] = strtoupper($n['titulo']);
+        }
+    }
+    header('Location: index.php');
+    exit;
+}
+
+// --- Ver detalle ---
+if (isset($_GET['detalle'])) {
+    $id = $_GET['detalle'];
+    foreach ($_SESSION['noticias'] as $n) {
+        if ($n['id'] == $id) {
+            echo '<div class="container mt-5 pt-5">';
+            echo '<h2>' . htmlspecialchars($n['titulo']) . '</h2>';
+            echo '<p><strong>Autor:</strong> ' . htmlspecialchars($n['autor']) . '</p>';
+            echo '<p><strong>Fecha:</strong> ' . htmlspecialchars($n['fecha']) . '</p>';
+            echo '<p>' . nl2br(htmlspecialchars($n['texto'])) . '</p>';
+            echo '<a href="index.php" class="btn btn-secondary">Volver</a> ';
+            echo '<a href="index.php?mayus=1&id=' . $n['id'] . '" class="btn btn-warning">Título mayúsculas</a>';
+            echo '</div>';
+            exit;
+        }
+    }
+}
+
+// --- Procesar alta ---
+$error = '';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $titulo = trim($_POST['titulo'] ?? '');
+    $autor = trim($_POST['autor'] ?? '');
+    $fecha = trim($_POST['fecha'] ?? '');
+    $texto = trim($_POST['texto'] ?? '');
+
+    if (strlen($titulo) < 5) {
+        $error = 'El título debe tener al menos 5 caracteres.';
+    } else {
+        addNoticia($titulo, $autor, $fecha, $texto);
+        header('Location: index.php');
+        exit;
+    }
+}
+
+?>
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -27,11 +147,11 @@
             <div class="collapse navbar-collapse justify-content-center w-125" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link text-white" href="index.php">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="Noticias/noticiaUno.php">Destacado</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="Noticias/noticiaUno.php">DAW2</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="Noticias/noticiaUno.php">Arangoya</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="Noticias/noticiaUno.php">Formulario</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="addNoticia.php">Soporte</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="noticiaUno.php">Destacado</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="noticiaDos.php">DAW2</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="noticiaTres.php">Arangoya</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="addNoticia.php">Formulario</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="soporte.php">Soporte</a></li>
 
                 </ul>
             </div>
@@ -99,43 +219,55 @@
         </div>
     </section>
 
-    <!-- ===== CARDS ===== -->
+    <!-- ===== FILTROS ===== -->
+    <div class="container mt-4">
+        <h2>Filtrar Noticias</h2>
+        <form method="GET" class="row g-2 mb-4">
+            <div class="col-md-4">
+                <input type="text" class="form-control" name="buscar" placeholder="Buscar por texto..." value="<?= htmlspecialchars($filtrarTexto) ?>">
+            </div>
+            <div class="col-md-4">
+                <select name="mes" class="form-select">
+                    <option value="">Filtrar por mes</option>
+                    <?php
+                    for ($m = 1; $m <= 12; $m++) {
+                        $mes = str_pad($m, 2, '0', STR_PAD_LEFT);
+                        echo '<option value="' . $mes . '"' . ($filtrarMes == $mes ? ' selected' : '') . '>' . $mes . '</option>';
+                    }
+                    ?>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-danger">Filtrar</button>
+            </div>
+            <div class="col-md-2">
+                <a href="index.php?ordenar=1" class="btn btn-danger">Ordenar por fecha ↓</a>
+            </div>
+        </form>
+    </div>
+
+    <!-- ===== CARDS DINÁMICAS ===== -->
     <section class="cards py-5">
         <div class="container">
             <div class="row g-4">
-                <!-- Card 1 -->
-                <div class="col-md-4">
-                    <div class="card-hover">
-                        <img src="https://picsum.photos/400/250?random=10" alt="Card 1">
-                        <div class="overlay">
-                            <h3>Card 1</h3>
-                            <p>Descripción del card 1</p>
+                <?php foreach ($noticias as $n): ?>
+                    <div class="col-md-4">
+                        <div class="card-hover">
+                            <img src="https://picsum.photos/400/250?random=<?= $n['id'] ?>" alt="<?= htmlspecialchars($n['titulo']) ?>">
+                            <div class="overlay">
+                                <h3><?= htmlspecialchars($n['titulo']) ?></h3>
+                                <p><?= htmlspecialchars(extracto($n['texto'])) ?></p>
+                                <small>Por <?= htmlspecialchars($n['autor']) ?> el <?= htmlspecialchars($n['fecha']) ?></small><br>
+                                <a href="index.php?detalle=<?= $n['id'] ?>" class="btn btn-sm btn-danger mt-2">Ver detalle</a>
+                                <a href="index.php?mayus=1&id=<?= $n['id'] ?>" class="btn btn-sm btn-danger mt-2">Título mayúsculas</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <!-- Card 2 -->
-                <div class="col-md-4">
-                    <div class="card-hover">
-                        <img src="https://picsum.photos/400/250?random=11" alt="Card 2">
-                        <div class="overlay">
-                            <h3>Card 2</h3>
-                            <p>Descripción del card 2</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Card 3 -->
-                <div class="col-md-4">
-                    <div class="card-hover">
-                        <img src="https://picsum.photos/400/250?random=12" alt="Card 3">
-                        <div class="overlay">
-                            <h3>Card 3</h3>
-                            <p>Descripción del card 3</p>
-                        </div>
-                    </div>
-                </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </section>
+
 
     <!-- ===== FOOTER CON COLUMNAS ===== -->
     <footer class="footer footer-columns py-5">

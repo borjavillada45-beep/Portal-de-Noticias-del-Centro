@@ -34,16 +34,7 @@
             </div>
         </div>
     </nav>
-    <div class="containerSearch mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Buscar">
-                    <button class="btn btn-outline-danger" type="submit">Buscar</button>
-                </form>
-            </div>
-        </div>
-    </div>
+    
     <div class="containerSoporte text-center mt-5 pt-5">
         <h1 class="titulo">¡Hola!</h1>
         <h1 class="subtitulo ">¿Necesitas ayuda?</h1>
