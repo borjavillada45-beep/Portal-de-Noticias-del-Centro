@@ -1,6 +1,22 @@
 <?php
 // Definimos la página activa (puedes cambiar este valor dinámicamente)
 $paginaActiva = "crear";
+
+$error = '';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $titulo = trim($_POST['titulo'] ?? '');
+    $autor = trim($_POST['autor'] ?? '');
+    $fecha = trim($_POST['fecha'] ?? '');
+    $texto = trim($_POST['texto'] ?? '');
+
+    if (strlen($titulo) < 5) {
+        $error = 'El título debe tener al menos 5 caracteres.';
+    } else {
+        addNoticia($titulo, $autor, $fecha, $texto);
+        header('Location: index.php');
+        exit;
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -60,26 +76,26 @@ $paginaActiva = "crear";
         <?php if ($error): ?>
             <div class="alert alert-danger"><?= $error ?></div>
         <?php endif; ?>
-        <form method="POST" enctype="multipart/form-data">
+        <form method="POST" action="index.php" enctype="multipart/form-data">
             <div class="mb-3">
                 <label class="form-label">Titulo</label>
-                <input type="text" class="form-control titulo" id="titulo" name="titulo" value="<?= htmlspecialchars($_POST['titulo'] ?? '')?>" required>
+                <input type="text" class="form-control titulo" id="titulo" name="titulo" value="<?= htmlspecialchars($_POST['titulo'] ?? '') ?>" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">Autor</label>
-                <input type="text" class="form-control autor" id="autor" name="autor" value="<?= htmlspecialchars($_POST['autor'] ?? '')?>" required>
+                <input type="text" class="form-control autor" id="autor" name="autor" value="<?= htmlspecialchars($_POST['autor'] ?? '') ?>" required>
             </div>
 
             <div class="mb-3">
                 <label class="form-label">Fecha</label>
-                <input type="text" class="form-control fecha" id="fecha" name="fecha" value="<?= htmlspecialchars($_POST['fecha'] ?? '')?>" required>
+                <input type="text" class="form-control fecha" id="fecha" name="fecha" value="<?= htmlspecialchars($_POST['fecha'] ?? '') ?>" required>
             </div>
 
             <div class="mb-3">
                 <label class="form-label">Noticia</label>
-                <textarea class="form-control" id="noticia" rows="5" name="noticia" required><?= htmlspecialchars($_POST['noticia'] ?? '')?></textarea>
+                <textarea class="form-control" id="noticia" rows="5" name="noticia" required><?= htmlspecialchars($_POST['noticia'] ?? '') ?></textarea>
             </div>
-            <button type="submit" class="btn btn-primary mi-boton" id="boton" onclick="addNoticia()">Enviar</button>
+            <button type="submit" class="btn btn-primary mi-boton" id="boton">Enviar</button>
         </form>
 
     </div>

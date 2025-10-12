@@ -2,29 +2,31 @@
 
 session_start();
 // Esta variable de sesión simula una base de datos de noticias y hace que no se pierdan los datos al recargar la página.
-$_SESSION['noticias'] = [
-    [
-        'id' => 1,
-        'titulo' => 'Noticia 1',
-        'autor' => 'Autor 1',
-        'fecha' => '2025-10-01',
-        'texto' => 'Descubre qué está pasando en el mundo. Esta es la noticia número uno.'
-    ],
-    [
-        'id' => 2,
-        'titulo' => 'Card 2',
-        'autor' => 'Autor 2',
-        'fecha' => '2025-09-15',
-        'texto' => 'Descripción del card 2. Segunda noticia interesante.'
-    ],
-    [
-        'id' => 3,
-        'titulo' => 'Card 3',
-        'autor' => 'Autor 3',
-        'fecha' => '2025-08-20',
-        'texto' => 'Descripción del card 3. Tercera noticia para mostrar.'
-    ]
-];
+if (!isset($_SESSION["noticias"])) { //Inicializamos las noticias si no existen
+    $_SESSION['noticias'] = [
+        [
+            'id' => 1,
+            'titulo' => 'Noticia 1',
+            'autor' => 'Autor 1',
+            'fecha' => '2025-10-01',
+            'texto' => 'Descubre qué está pasando en el mundo. Esta es la noticia número uno.'
+        ],
+        [
+            'id' => 2,
+            'titulo' => 'Card 2',
+            'autor' => 'Autor 2',
+            'fecha' => '2025-09-15',
+            'texto' => 'Descripción del card 2. Segunda noticia interesante.'
+        ],
+        [
+            'id' => 3,
+            'titulo' => 'Card 3',
+            'autor' => 'Autor 3',
+            'fecha' => '2025-08-20',
+            'texto' => 'Descripción del card 3. Tercera noticia para mostrar.'
+        ]
+    ];
+}
 // -- Funciones --
 function extracto($texto, $long = 50)
 {
@@ -100,13 +102,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $titulo = trim($_POST['titulo'] ?? '');
     $autor = trim($_POST['autor'] ?? '');
     $fecha = trim($_POST['fecha'] ?? '');
-    $texto = trim($_POST['texto'] ?? '');
+    $texto = trim($_POST['noticia'] ?? '');
 
     if (strlen($titulo) < 5) {
         $error = 'El título debe tener al menos 5 caracteres.';
+        header('Location: index.php?error=' . urlencode($error));
     } else {
         addNoticia($titulo, $autor, $fecha, $texto);
-        header('Location: index.php');
+        header('Location: index.php?sucess=1');
         exit;
     }
 }
@@ -124,13 +127,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sitio Moderno</title>
+    <title>Arangoya news</title>
 
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- CSS personalizado -->
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="img/logo.png">
 </head>
 
 <body>
@@ -157,6 +161,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </div>
     </nav>
+    <?php if (isset($_GET['success']) && $_GET['success'] == 1): ?>
+        <div class="alert alert-success text-center mt-5" role="alert">
+            ¡Noticia añadida correctamente!
+        </div>
+    <?php endif; ?>
 
     <!-- ===== CARRUSEL ===== -->
     <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
@@ -212,9 +221,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="container">
             <h2>Visita nuestras secciones de noticias</h2>
             <p>
-                mñvsjosdvpojadvskjavd`pksdabkavejDPOJOSIJGVSO´JGMODBJM`SDBSBHS
-                DRHMRSGPOSNBSNM`VBSKJPVMSGK`SOEBMP`pksoina`vm kstr
-                dojbesifbnsvñsebiufoepk´mlaokfafo
+                Bienvenido a Noticias Arangoya, un portal dinámico donde podrás crear,
+                compartir y explorar las noticias más recientes de nuestra comunidad educativa.
+                Aquí los estudiantes y docentes publican artículos,
+                comparten novedades y se mantienen informados de todo lo que ocurre en el entorno académico y tecnológico.
             </p>
         </div>
     </section>
