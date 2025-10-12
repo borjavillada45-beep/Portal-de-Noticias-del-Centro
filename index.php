@@ -268,8 +268,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <h3><?= htmlspecialchars($n['titulo']) ?></h3>
                                 <p><?= htmlspecialchars(extracto($n['texto'])) ?></p>
                                 <small>Por <?= htmlspecialchars($n['autor']) ?> el <?= htmlspecialchars($n['fecha']) ?></small><br>
-                                <a href="index.php?detalle=<?= $n['id'] ?>" class="btn btn-sm btn-danger mt-2">Ver detalle</a>
-                                <a href="index.php?mayus=1&id=<?= $n['id'] ?>" class="btn btn-sm btn-danger mt-2">Título mayúsculas</a>
+                                <a href="index.php?detalle=<?= $n['id'] ?>" class="btn btn-sm btn-danger align-items-center rounded-pill mt-2">Ver detalle</a>
+                                <a href="index.php?mayus=1&id=<?= $n['id'] ?>" class="btn btn-sm btn-danger align-items-center rounded-pill mt-2">Título mayúsculas</a>
                             </div>
                         </div>
                     </div>
