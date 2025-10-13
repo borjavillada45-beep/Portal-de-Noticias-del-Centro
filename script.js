@@ -1,23 +1,26 @@
-// Cambiar color del navbar al hacer scroll
-const navbar = document.getElementById('navbar');
+document.addEventListener("DOMContentLoaded", () => {
+  // Cambiar color del navbar al hacer scroll
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 50);
+  });
 
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 50) {
-    navbar.classList.add('scrolled');
-  } else {
-    navbar.classList.remove('scrolled');
+  // Inicializar Flatpickr si existe
+  if (document.querySelector("#fecha")) {
+    flatpickr("#fecha", {
+      dateFormat: "Y-m-d",
+      locale: "es"
+    });
+  }
+
+  // Mostrar modal de éxito
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('success') === '1') {
+    const modalEl = document.getElementById('successModal');
+    if (modalEl) {
+      const modal = new bootstrap.Modal(modalEl);
+      modal.show();
+      window.history.replaceState(null, '', window.location.pathname);
+    }
   }
 });
-
-//Para el nuevo calendario
-flatpickr("#fecha", {
-  dateFormat: "Y-m-d",
-  //Elegir idioma
-  locale: "es"
-});
-
-
-  setTimeout(() => {
-    const alert = document.querySelector('.alert-success');
-    if (alert) alert.remove();
-  }, 4000); // se oculta tras 4 segundos
