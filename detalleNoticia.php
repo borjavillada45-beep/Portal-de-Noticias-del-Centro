@@ -28,12 +28,14 @@ if (!$noticia) {
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Noticias</title>
 
     <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
 
     <!-- CSS personalizado -->
     <link rel="stylesheet" href="style.css">
@@ -70,7 +72,7 @@ if (!$noticia) {
             <div class="row align-items-center">
                 <!-- TEXTO -->
                 <div class="col-md-8">
-                    <h2><?= htmlspecialchars($noticia['titulo']) ?></h2>
+                    <h2><b><?= htmlspecialchars($noticia['titulo']) ?></b></h2>
                     <div class="info">
                         <p><?= nl2br(htmlspecialchars($noticia['texto'])) ?></p>
                         <p><strong>Autor:</strong> <?= htmlspecialchars($noticia['autor']) ?></p>
@@ -80,7 +82,7 @@ if (!$noticia) {
                         <?php endif; ?>
                         <p><?= date("Y:m:d") ?></p>
                     </div>
-                    <a href="index.php" class="btn btn-secondary">Volver a Noticias</a>
+                    <a href="index.php" class="btn btn-danger">Volver a Noticias</a>
                 </div>
 
                 <!-- IMAGEN -->
@@ -101,11 +103,11 @@ if (!$noticia) {
         <div class="container">
             <div class="row">
                 <div class="col-md-4 mb-3">
-                    <h5>Arangoya News</h5>
+                    <h5><b>Arangoya News</b></h5>
                     <p>Transformando ideas en soluciones digitales.</p>
                 </div>
                 <div class="col-md-4 mb-3">
-                    <h5>Enlaces</h5>
+                    <h5><b>Enlaces</b></h5>
                     <ul class="list-unstyled">
                         <li><a href="index.php" class="text-white">Inicio</a></li>
                         <li><a href="addNoticia.php" class="text-white">Formulario</a></li>
@@ -113,7 +115,7 @@ if (!$noticia) {
                     </ul>
                 </div>
                 <div class="col-md-4 mb-3">
-                    <h5>Síguenos</h5>
+                    <h5><b>Síguenos</b></h5>
                     <div class="icons">
                         <a href="https://x.com/?lang=es" class="social x me-2" target="_blank">
                             <i class="bi bi-x-lg"></i>

@@ -225,11 +225,27 @@ if (isset($_GET['detalle'])) {
     </nav>
 
     <!-- ===== MENSAJES ===== -->
-    <?php if (isset($_GET['success'])): ?>
-    <div class="alert alert-success text-center mt-5">¡Noticia añadida correctamente!</div>
-    <?php elseif (isset($_GET['error'])): ?>
+    <?php if (isset($_GET['error'])): ?>
     <div class="alert alert-danger text-center mt-5"><?= htmlspecialchars($_GET['error']) ?></div>
     <?php endif; ?>
+    <!-- Modal de éxito -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-success">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title" id="successModalLabel">¡Éxito!</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    ¡La noticia se ha añadido correctamente!
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- CARRUSEL -->
     <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
