@@ -38,6 +38,27 @@ function extracto($texto, $long = 50)
 {
     return strlen($texto) > $long ? substr($texto, 0, $long) . "..." : $texto;
 }
+function listar($noticias, $categoria = '')
+{
+    foreach ($noticias as $n) {
+        if ($categoria && (!isset($n['categoria']) || stripos($n['categoria'], $categoria) === false)) {
+            continue;
+        }
+        echo '<div class="col-md-4">';
+        echo '<div class="card-hover">';
+        echo '<img src="https://picsum.photos/400/250?random=' . $n['id'] . '" alt="' . htmlspecialchars($n['titulo']) . '">';
+        echo '<div class="overlay">';
+        echo '<h3>' . htmlspecialchars($n['titulo']) . '</h3>';
+        echo '<p>' . htmlspecialchars(extracto($n['texto'])) . '</p>';
+        echo '<small>Por ' . htmlspecialchars($n['autor']) . ' el ' . htmlspecialchars($n['fecha']) . '</small><br>';
+        if (!empty($n['categoria'])) {
+            echo '<small>Categoría: ' . htmlspecialchars($n['categoria']) . '</small><br>';
+        }
+        echo '<a href="index.php?detalle=' . $n['id'] . '" class="btn btn-sm btn-danger rounded-pill mt-2">Ver detalle</a>';
+        echo '<a href="index.php?mayus=1&id=' . $n['id'] . '" class="btn btn-sm btn-danger rounded-pill mt-2">Título mayúsculas</a>';
+        echo '</div></div></div>';
+    }
+}
 
 function addNoticia($titulo, $autor, $fecha, $noticia)
 {
@@ -47,7 +68,8 @@ function addNoticia($titulo, $autor, $fecha, $noticia)
         'titulo' => $titulo,
         'autor' => $autor,
         'fecha' => $fecha,
-        'texto' => $noticia
+        'texto' => $noticia,
+        'categoria' => '' // categoría vacía por defecto
     ];
 }
 
@@ -66,6 +88,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $autor  = trim($_POST['autor'] ?? '');
     $fecha  = trim($_POST['fecha'] ?? '');
     $texto  = trim($_POST['noticia'] ?? '');
+    $categoria = trim($_POST['categoria'] ?? '');
+    $imagen = trim($_POST['imagen'] ?? '');
 
     if (strlen($titulo) < 5) {
         $error = 'El título debe tener al menos 5 caracteres.';
@@ -82,7 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // === Resetear noticias predeterminadas antes de añadir nueva ===
     $_SESSION['noticias'] = $noticiasPredeterminadas;
 
-    addNoticia($titulo, $autor, $fecha, $texto);
+    addNoticia($titulo, $autor, $fecha, $texto, $categoria, $imagen);
     header('Location: index.php?success=1');
     exit;
 }
@@ -97,18 +121,19 @@ $filtrarCategoria = trim($_GET['categoria'] ?? '');
 
 $noticias = $_SESSION['noticias'];
 
+// --- Filtro por texto ---
 if ($filtrarTexto) {
     $noticias = array_filter($noticias, function ($n) use ($filtrarTexto) {
         return stripos($n['titulo'], $filtrarTexto) !== false || stripos($n['texto'], $filtrarTexto) !== false;
     });
 }
-
+// --- Ordenar por mes ---
 if ($filtrarMes) {
     $noticias = array_filter($noticias, function ($n) use ($filtrarMes) {
         return substr($n['fecha'], 5, 2) === $filtrarMes;
     });
 }
-
+// --- Ordenar por fecha descendente ---
 if ($ordenar) {
     usort($noticias, function ($a, $b) {
         return strcmp($b['fecha'], $a['fecha']);
@@ -119,7 +144,7 @@ if ($ordenar) {
 // ======================================================
 if ($filtrarCategoria) {
     $noticias = array_filter($noticias, function ($n) use ($filtrarCategoria) {
-        return stripos($n['categoria'], $filtrarCategoria) !== false;
+        return isset($n['categoria']) && stripos($n['categoria'], $filtrarCategoria) !== false;
     });
 }
 // ======================================================
@@ -247,7 +272,7 @@ if (isset($_GET['detalle'])) {
             <span class="carousel-control-next-icon"></span>
         </button>
     </div>
-
+    <!-- ===== SECCIÓN DE BIENVENIDA ===== -->
     <section class="content py-5 text-center">
         <div class="container">
             <h2>Visita nuestras secciones de noticias</h2>
@@ -308,23 +333,7 @@ if (isset($_GET['detalle'])) {
     <section class="cards py-5">
         <div class="container">
             <div class="row g-4">
-                <?php foreach ($noticias as $n): ?>
-                    <div class="col-md-4">
-                        <div class="card-hover">
-                            <img src="https://picsum.photos/400/250?random=<?= $n['id'] ?>" alt="<?= htmlspecialchars($n['titulo']) ?>">
-                            <div class="overlay">
-                                <h3><?= htmlspecialchars($n['titulo']) ?></h3>
-                                <p><?= htmlspecialchars(extracto($n['texto'])) ?></p>
-                                <small>Por <?= htmlspecialchars($n['autor']) ?> el <?= htmlspecialchars($n['fecha']) ?></small><br>
-                                <?php if (!empty($n['categoria'])): ?>
-                                    <small>Categoría: <?= htmlspecialchars($n['categoria']) ?></small><br>
-                                <?php endif; ?>
-                                <a href="index.php?detalle=<?= $n['id'] ?>" class="btn btn-sm btn-danger rounded-pill mt-2">Ver detalle</a>
-                                <a href="index.php?mayus=1&id=<?= $n['id'] ?>" class="btn btn-sm btn-danger rounded-pill mt-2">Título mayúsculas</a>
-                            </div>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
+                <?php listar($noticias, $filtrarCategoria); ?>
             </div>
         </div>
     </section>

@@ -11,7 +11,7 @@ if (!isset($_SESSION['noticias'])) {
 }
 
 // Función para añadir una noticia (misma que en index.php)
-function addNoticia($titulo, $autor, $fecha, $texto)
+function addNoticia($titulo, $autor, $fecha, $texto, $categoria, $imagen)
 {
     $id = count($_SESSION['noticias']) > 0 ? max(array_column($_SESSION['noticias'], 'id')) + 1 : 1;
     $_SESSION['noticias'][] = [
@@ -19,7 +19,9 @@ function addNoticia($titulo, $autor, $fecha, $texto)
         'titulo' => $titulo,
         'autor' => $autor,
         'fecha' => $fecha,
-        'texto' => $texto
+        'texto' => $texto,
+        'categoria' => $categoria,
+        'imagen' => $imagen
     ];
 }
 
@@ -33,13 +35,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $autor  = trim($_POST['autor'] ?? '');
     $fecha  = trim($_POST['fecha'] ?? '');
     $texto  = trim($_POST['noticia'] ?? '');
+    $categoria = trim($_POST['categoria'] ?? '');
+    $imagen = trim($_POST['imagen'] ?? '');
 
     if (strlen($titulo) < 5) {
         $error = 'El título debe tener al menos 5 caracteres.';
+    } elseif (empty($categoria)) {
+        $error = 'Debe seleccionar una categoria';
     } elseif (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $fecha)) {
         $error = 'La fecha no tiene un formato válido (YYYY-MM-DD).';
     } else {
-        addNoticia($titulo, $autor, $fecha, $texto);
+        $imagen = $_FILES['imagen']['name'] ?? '';
+        if(!$imagen)$imagen = 'sin_imagen.jpg';
+        addNoticia($titulo, $autor, $fecha, $texto, $categoria, $imagen);
         header('Location: index.php?success=1');
         exit;
     }
@@ -119,10 +127,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <select name="categoria" class="form-select" required>
                     <option value="" disabled selected>Seleccione una categoría</option>
                     <option value="Internacional" <?= (isset($_POST['categoria']) && $_POST['categoria'] === 'Internacional') ? 'selected' : '' ?>>Internacional</option>
-                    <option value="Nacional" <?= (isset($_POST['categoria']) && $_POST['categoria'] === 'Arangoya') ? 'selected' : '' ?>>Arangoya</option>
+                    <option value="Arangoya" <?= (isset($_POST['categoria']) && $_POST['categoria'] === 'Arangoya') ? 'selected' : '' ?>>Arangoya</option>
                     <option value="Deportes" <?= (isset($_POST['categoria']) && $_POST['categoria'] === 'Deportes') ? 'selected' : '' ?>>Deportes</option>
                     <option value="Cultura" <?= (isset($_POST['categoria']) && $_POST['categoria'] === 'Cultura') ? 'selected' : '' ?>>Cultura</option>
-                    <option value="Tecnología" <?= (isset($_POST['categoria']) && $_POST['categoria'] === 'Otros') ? 'selected' : '' ?>>Otros</option>
+                    <option value="Otros" <?= (isset($_POST['categoria']) && $_POST['categoria'] === 'Otros') ? 'selected' : '' ?>>Otros</option>
                 </select>
             </div>
             <div class="mb-3">
