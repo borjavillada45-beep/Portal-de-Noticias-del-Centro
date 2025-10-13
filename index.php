@@ -12,7 +12,6 @@
     <!-- CSS personalizado -->
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
     <!-- ===== NAVBAR ===== -->
@@ -28,11 +27,11 @@
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link text-white" href="index.php">Inicio</a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="Noticias/noticiaUno.php">Destacado</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="Noticias/noticiaUno.php">DAW2</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="Noticias/noticiaUno.php">Arangoya</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="Noticias/noticiaDos.php">DAW2</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="Noticias/noticiaTres.php">Arangoya</a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="Noticias/noticiaUno.php">Formulario</a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="addNoticia.php">Soporte</a></li>
-
+                    
                 </ul>
             </div>
         </div>
