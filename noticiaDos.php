@@ -12,8 +12,8 @@ $paginaActiva = "noticias";
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   <link rel="stylesheet" href="/Github/Portal-de-Noticias-del-Centro/style.css" />
-  <link rel="stylesheet" href="../style.css">
-  <link rel="icon" href="../img/logo.png">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="img/logo.png">
 
 </head>
 
@@ -29,9 +29,9 @@ $paginaActiva = "noticias";
       <div class="collapse navbar-collapse justify-content-center w-125" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item"><a class="nav-link text-white" href="index.php">Inicio</a></li>
-          <li class="nav-item"><a class="nav-link text-white" href="Noticias/noticiaUno.php">Destacado</a></li>
-          <li class="nav-item"><a class="nav-link text-white" href="Noticias/noticiaDos.php">DAW2</a></li>
-          <li class="nav-item"><a class="nav-link text-white" href="Noticias/noticiaTres.php">Arangoya</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="noticiaUno.php">Destacado</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="noticiaDos.php">DAW2</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="noticiaTres.php">Arangoya</a></li>
           <li class="nav-item"><a class="nav-link text-white" href="addNoticia.php">Formulario</a></li>
           <li class="nav-item"><a class="nav-link text-white" href="soporte.php">Soporte</a></li>
 
@@ -43,9 +43,9 @@ $paginaActiva = "noticias";
   <div class="container my-4">
     <div class="row d-flex align-items-center">
       <div class="col-md-8">
-        <h2 class="title_class">¡Del barrio bajo a Polonia!</h2>
-        <p class="p_notice">
-          <b>Bermeo, Bizkaia </b>– Enertiz, una joven estudiante de segundo curso de Desarrollo de Aplicaciones Web (DAW), ha sido seleccionada como la única alumna de su clase para participar en el programa Erasmus en Oświęcim, Polonia. Lo que podría parecer una simple beca internacional, para ella representa mucho más: un giro inesperado en una vida marcada por la lucha, la incertidumbre y la esperanza. <br>
+        <h2 class="title_class m-3">¡Del barrio bajo a Polonia!</h2>
+        <p class="p_notice m-3">
+          <b>Bermeo, Bizkaia</b>– Enertiz, una joven estudiante de segundo curso de Desarrollo de Aplicaciones Web (DAW), ha sido seleccionada como la única alumna de su clase para participar en el programa Erasmus en Oświęcim, Polonia. Lo que podría parecer una simple beca internacional, para ella representa mucho más: un giro inesperado en una vida marcada por la lucha, la incertidumbre y la esperanza. <br>
           Enertiz vive en condiciones de extrema precariedad. Su hogar, en una zona humilde de Bermeo, apenas cuenta con lo básico. A pesar de ello, cada mañana se levanta con la determinación de cambiar su destino. “Hay días en los que no sé si podré comer caliente, pero nunca he dejado de estudiar”, confiesa con la voz entrecortada. <br>
           Lo más sorprendente de su selección es que no alcanzó la media mínima exigida de 7 puntos. Sin embargo, el comité del centro educativo decidió mirar más allá de los números. Vieron en ella una historia de superación, una voluntad férrea y un potencial que no puede medirse con una nota.
           “Enertiz no solo merece esta oportunidad, la necesita”, declaró emocionada la directora del centro. “Sabemos que este viaje puede marcar un antes y un después en su vida, y por eso hemos decidido cubrir los siguientes gastos: desde el desplazamiento hasta el alojamiento en un apartamento en Oświęcim”. <br>
@@ -54,8 +54,11 @@ $paginaActiva = "noticias";
         </p>
       </div>
       <div class="col-md-4 d-flex flex-column justify-content-center align-items-center">
-        <img src="../img/Enerica.jpeg" alt="noticia1" class="img-fluid rounded shadow mb-3">
-        <img src="../img/oswiecim.webp" alt="noticia1" class="img-fluid rounded shadow">
+        <img src="img/Enerica.jpeg" alt="noticia1" class="img-fluid rounded shadow mb-3">
+        <img src="img/oswiecim.webp" alt="noticia1" class="img-fluid rounded shadow">
+      </div>
+      <div class="m-3">
+        <?php echo date("Y:m:d") ?>
       </div>
     </div>
   </div>

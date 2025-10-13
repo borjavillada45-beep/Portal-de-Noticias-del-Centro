@@ -48,7 +48,7 @@
       </div>
       <div class="col-md-4 d-flex flex-column justify-content-center align-items-center">
         <img src="img/logistica.jpg" alt="noticia1" class="img-fluid rounded shadow mb-3">
-        <img src="img/arangoya.jpg" alt="noticia1" class="img-fluid rounded shadow">
+        <img src="img/logisticaDos.jpg" alt="noticia1" class="img-fluid rounded shadow">
       </div>
       <div class="m-3">
         <?php echo date("Y:m:d") ?>
