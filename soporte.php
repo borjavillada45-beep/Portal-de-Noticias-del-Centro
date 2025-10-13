@@ -34,16 +34,7 @@
             </div>
         </div>
     </nav>
-    <div class="containerSearch mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Buscar">
-                    <button class="btn btn-outline-danger" type="submit">Buscar</button>
-                </form>
-            </div>
-        </div>
-    </div>
+
     <div class="containerSoporte text-center mt-5 pt-5">
         <h1 class="titulo">¡Hola!</h1>
         <h1 class="subtitulo ">¿Necesitas ayuda?</h1>
@@ -56,7 +47,7 @@
                 <input type="text" class="form-control" placeholder="Escribe tu nombre y apellidos" required>
             </div>
             <div class="mb-3">
-                <label class="form-label" id="">Correo: </label>
+                <label class="form-label" id="correo">Correo: </label>
                 <input type="email" class="form-control" placeholder="Escribe tu correo" required>
             </div>
             <div class="mb-3">
@@ -72,7 +63,11 @@
                     maxlength="9"
                     required>
             </div>
-            <textarea class="form-control mb-3" rows="5" placeholder="Escribe tu consulta aquí..." required></textarea>
+            <div class="mb-3">
+                <label class="label-form" id="consulta">Consulta: </label>
+                <textarea class="form-control mb-3" rows="5" placeholder="Escribe tu consulta aquí..." required></textarea>
+            </div>
+
             <button type="submit" class="btn btn-danger mi-boton" id="boton">Enviar</button>
         </form>
     </div>

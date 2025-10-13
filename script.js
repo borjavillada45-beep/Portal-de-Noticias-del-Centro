@@ -15,3 +15,9 @@ flatpickr("#fecha", {
   //Elegir idioma
   locale: "es"
 });
+
+
+  setTimeout(() => {
+    const alert = document.querySelector('.alert-success');
+    if (alert) alert.remove();
+  }, 4000); // se oculta tras 4 segundos

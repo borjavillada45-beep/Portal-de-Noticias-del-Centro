@@ -314,14 +314,27 @@ body {
   max-width: 800px;
   text-align: justify;
 }
-
-.containerSoporte{
-  margin-right: 1000px;
+#nombre:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.25rem rgba(255, 0, 0, 0.5);
+  /* rojo con transparencia */
 }
 
-.titulo{
-  margin-right:220px;
+#correo:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.25rem rgba(255, 0, 0, 0.5);
+  /* rojo con transparencia */
 }
-.conatinerSearch{
-  padding-top: 100px;
+
+#phone:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.25rem rgba(255, 0, 0, 0.5);
+  /* rojo con transparencia */
 }
+
+#consulta:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.25rem rgba(255, 0, 0, 0.5);
+  /* rojo con transparencia */
+}
+

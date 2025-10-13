@@ -12,8 +12,8 @@ $paginaActiva = "noticias";
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   <link rel="stylesheet" href="/Github/Portal-de-Noticias-del-Centro/style.css" />
-  <link rel="stylesheet" href="../style.css">
-  <link rel="icon" href="../img/logo.png">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="img/logo.png">
 
 </head>
 
@@ -28,12 +28,12 @@ $paginaActiva = "noticias";
 
       <div class="collapse navbar-collapse justify-content-center w-125" id="navbarNav">
         <ul class="navbar-nav">
-          <li class="nav-item"><a class="nav-link text-white" href="../index.php">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="index.php">Inicio</a></li>
           <li class="nav-item"><a class="nav-link text-white" href="noticiaUno.php">Destacado</a></li>
-          <li class="nav-item"><a class="nav-link text-white" href="Noticias/noticiaDos.php">DAW2</a></li>
-          <li class="nav-item"><a class="nav-link text-white" href="Noticias/noticiaTres.php">Arangoya</a></li>
-          <li class="nav-item"><a class="nav-link text-white" href="../addNoticia.php">Formulario</a></li>
-          <li class="nav-item"><a class="nav-link text-white" href="../soporte.php">Soporte</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="noticiaDos.php">DAW2</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="noticiaTres.php">Arangoya</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="addNoticia.php">Formulario</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="soporte.php">Soporte</a></li>
 
         </ul>
       </div>
@@ -53,8 +53,8 @@ $paginaActiva = "noticias";
         </p>
       </div>
       <div class="col-md-4 d-flex flex-column justify-content-center align-items-center">
-        <img src="../img/Palestina.jpg" alt="noticia1" class="img-fluid rounded shadow mb-3">
-        <img src="../img/Donald Trump.webp" alt="noticia1" class="img-fluid rounded shadow">
+        <img src="img/Palestina.jpg" alt="noticia1" class="img-fluid rounded shadow mb-3">
+        <img src="img/Donald Trump.webp" alt="noticia1" class="img-fluid rounded shadow">
       </div>
       <div class="m-3">
         <?php echo date("Y:m:d") ?>
