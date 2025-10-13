@@ -7,13 +7,13 @@ private $fecha;
 private $noticia;
 
 
-public function __constuct($id, $titulo, $autor, $fecha, $noticia) {
+public function __construct($id, $titulo, $autor, $fecha, $noticia) {
     $this->id = $id;
     $this->titulo = $titulo;
     $this->autor = $autor;
     $this->fecha = $fecha;
     $this->noticia = $noticia;
-}
+}   
 
 function get_id() { return $this->id; }
 function get_titulo() { return $this->titulo; }
