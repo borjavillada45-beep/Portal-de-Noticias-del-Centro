@@ -43,7 +43,7 @@ $paginaActiva = "noticias";
   <div class="container my-4">
     <div class="row d-flex align-items-center">
       <div class="col-md-8">
-        <h2 class="titleSecondary_class m-3">Tratado de paz entre Isarel y Palestina</h2>
+        <h2 class="titleSecondary_class m-3">Tratado de paz entre Israel y Palestina</h2>
         <p class="p_notice m-3">
           Después de dos años de guerra que dejaron más de 67.000 muertos, Israel y Hamás han aceptado la primera fase del plan de paz impulsado por Estados Unidos. El acuerdo fue anunciado por Donald Trump a través de su red social Truth Social, donde afirmó que “todos los rehenes serán liberados muy pronto” y que Israel retirará sus tropas a una línea acordada como primer paso hacia una paz “fuerte, duradera y eterna”.
           El pacto incluye el intercambio de prisioneros, con la liberación de 48 rehenes israelíes —la mayoría fallecidos— a cambio de unos 2.000 presos palestinos. También contempla la retirada del Ejército israelí de la Franja de Gaza, la entrada de ayuda humanitaria y la creación de un Gobierno tecnócrata palestino para administrar Gaza. Hamás ha aceptado el acuerdo, aunque ha expresado reservas sobre su exclusión política en el futuro gobierno de la Franja.

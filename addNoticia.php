@@ -58,10 +58,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="collapse navbar-collapse justify-content-center w-125" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link text-white" href="index.php">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="Noticias/noticiaUno.php">Destacado</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="Noticias/noticiaUno.php">DAW2</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="Noticias/noticiaUno.php">Arangoya</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="Noticias/noticiaUno.php">Formulario</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="noticiaUno.php">Destacado</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="noticiaDos.php">DAW2</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="noticiaTres.php">Arangoya</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="noticiaUno.php">Formulario</a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="addNoticia.php">Soporte</a></li>
 
                 </ul>
