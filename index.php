@@ -11,7 +11,8 @@ $noticiasPredeterminadas = [
         'autor' => 'Autor 1',
         'fecha' => '2025-10-01',
         'texto' => 'Texto actualizado de la noticia 1',
-        'categoria' => 'Internacional'
+        'categoria' => 'Internacional',
+        'imagen' => 'https://picsum.photos/400/250?random=1'
     ],
     [
         'id' => 2,
@@ -19,7 +20,8 @@ $noticiasPredeterminadas = [
         'autor' => 'Autor 2',
         'fecha' => '2025-09-15',
         'texto' => 'Texto actualizado de la noticia 2',
-        'categoria' => 'Arangoya'
+        'categoria' => 'Arangoya',
+        'imagen' => 'https://picsum.photos/400/250?random=2'
     ],
     [
         'id' => 3,
@@ -27,7 +29,8 @@ $noticiasPredeterminadas = [
         'autor' => 'Autor 3',
         'fecha' => '2025-08-20',
         'texto' => 'Texto actualizado de la noticia 3',
-        'categoria' => 'Arangoya'
+        'categoria' => 'Arangoya',
+        'imagen' => 'https://picsum.photos/400/250?random=3'
     ]
 ];
 
@@ -38,6 +41,7 @@ function extracto($texto, $long = 50)
 {
     return strlen($texto) > $long ? substr($texto, 0, $long) . "..." : $texto;
 }
+
 function listar($noticias, $categoria = '')
 {
     foreach ($noticias as $n) {
@@ -46,7 +50,7 @@ function listar($noticias, $categoria = '')
         }
         echo '<div class="col-md-4">';
         echo '<div class="card-hover">';
-        echo '<img src="https://picsum.photos/400/250?random=' . $n['id'] . '" alt="' . htmlspecialchars($n['titulo']) . '">';
+        echo '<img src="' . ($n['imagen'] ?? 'https://picsum.photos/400/250?random=' . $n['id']) . '" alt="' . htmlspecialchars($n['titulo']) . '">';
         echo '<div class="overlay">';
         echo '<h3>' . htmlspecialchars($n['titulo']) . '</h3>';
         echo '<p>' . htmlspecialchars(extracto($n['texto'])) . '</p>';
@@ -54,29 +58,30 @@ function listar($noticias, $categoria = '')
         if (!empty($n['categoria'])) {
             echo '<small>Categoría: ' . htmlspecialchars($n['categoria']) . '</small><br>';
         }
-        echo '<a href="index.php?detalle=' . $n['id'] . '" class="btn btn-sm btn-danger rounded-pill mt-2">Ver detalle</a>';
+        echo '<a href="detalleNoticia.php?id=' . $n['id'] . '" class="btn btn-sm btn-danger rounded-pill mt-2">Ver detalle</a>';
         echo '<a href="index.php?mayus=1&id=' . $n['id'] . '" class="btn btn-sm btn-danger rounded-pill mt-2">Título mayúsculas</a>';
         echo '</div></div></div>';
     }
 }
 
-function addNoticia($titulo, $autor, $fecha, $noticia)
+function addNoticia($titulo, $autor, $fecha, $texto, $categoria, $imagen)
 {
-    $id = max(array_column($_SESSION['noticias'], 'id')) + 1; // genera ID único
+    $id = count($_SESSION['noticias']) > 0 ? max(array_column($_SESSION['noticias'], 'id')) + 1 : 1;
     $_SESSION['noticias'][] = [
         'id' => $id,
         'titulo' => $titulo,
         'autor' => $autor,
         'fecha' => $fecha,
-        'texto' => $noticia,
-        'categoria' => '' // categoría vacía por defecto
+        'texto' => $texto,
+        'categoria' => $categoria,
+        'imagen' => $imagen ?: 'https://picsum.photos/400/250?random=' . $id
     ];
 }
 
 // ======================================================
 // === INICIALIZAR SESIÓN CON NOTICIAS PREDETERMINADAS ===
 // ======================================================
-if (!isset($_SESSION['noticias'])) {
+if (!isset($_SESSION['noticias']) || empty($_SESSION['noticias'])) {
     $_SESSION['noticias'] = $noticiasPredeterminadas;
 }
 
@@ -89,8 +94,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $fecha  = trim($_POST['fecha'] ?? '');
     $texto  = trim($_POST['noticia'] ?? '');
     $categoria = trim($_POST['categoria'] ?? '');
-    $imagen = trim($_POST['imagen'] ?? '');
+    $imagen = $_FILES['imagen']['name'] ?? '';
 
+    // Validaciones
     if (strlen($titulo) < 5) {
         $error = 'El título debe tener al menos 5 caracteres.';
         header('Location: index.php?error=' . urlencode($error));
@@ -103,19 +109,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    $_SESSION['noticias'] = $noticiasPredeterminadas;
-
     addNoticia($titulo, $autor, $fecha, $texto, $categoria, $imagen);
     header('Location: index.php?success=1');
     exit;
 }
 
 // ======================================================
-// === FILTROS ===
+// === FILTROS Y ORDENACIÓN ===
 // ======================================================
 $filtrarTexto = trim($_GET['buscar'] ?? '');
 $filtrarMes   = trim($_GET['mes'] ?? '');
-$ordenar      = isset($_GET['ordenar']) ? true : false;
+$ordenar      = isset($_GET['ordenar']);
 $filtrarCategoria = trim($_GET['categoria'] ?? '');
 
 $noticias = $_SESSION['noticias'];
@@ -126,26 +130,28 @@ if ($filtrarTexto) {
         stripos($n['titulo'], $filtrarTexto) !== false || stripos($n['texto'], $filtrarTexto) !== false
     );
 }
-// --- Ordenar por mes ---
+
+// --- Filtro por mes ---
 if ($filtrarMes) {
     $noticias = array_filter($noticias, fn($n) =>
         substr($n['fecha'], 5, 2) === $filtrarMes
     );
 }
+
+// --- Filtro por categoría ---
+if ($filtrarCategoria) {
+    $noticias = array_filter($noticias, fn($n) =>
+        isset($n['categoria']) && stripos($n['categoria'], $filtrarCategoria) !== false
+    );
+}
+
 // --- Ordenar por fecha descendente ---
 if ($ordenar) {
     usort($noticias, fn($a, $b) => strcmp($b['fecha'], $a['fecha']));
 }
+
 // ======================================================
-// === FILTRAR POR CATEGORIA ===
-// ======================================================
-if ($filtrarCategoria) {
-    $noticias = array_filter($noticias, function ($n) use ($filtrarCategoria) {
-        return isset($n['categoria']) && stripos($n['categoria'], $filtrarCategoria) !== false;
-    });
-}
-// ======================================================
-// === CONVERTIR A MAYÚSCULAS ===
+// === TÍTULO A MAYÚSCULAS ===
 // ======================================================
 if (isset($_GET['mayus']) && isset($_GET['id'])) {
     $id = intval($_GET['id']);
@@ -169,7 +175,7 @@ if (isset($_GET['detalle'])) {
             echo '<h2>' . htmlspecialchars($n['titulo']) . '</h2>';
             echo '<p><strong>Autor:</strong> ' . htmlspecialchars($n['autor']) . '</p>';
             echo '<p><strong>Fecha:</strong> ' . htmlspecialchars($n['fecha']) . '</p>';
-            echo ' <p><strong>Categoría:</strong> ' . htmlspecialchars($n['categoria']) . '</p>';
+            echo '<p><strong>Categoría:</strong> ' . htmlspecialchars($n['categoria']) . '</p>';
             echo '<p>' . nl2br(htmlspecialchars($n['texto'])) . '</p>';
             echo '<a href="index.php" class="btn btn-secondary">Volver</a> ';
             echo '<a href="index.php?mayus=1&id=' . $n['id'] . '" class="btn btn-warning">Título mayúsculas</a>';
@@ -189,6 +195,8 @@ if (isset($_GET['detalle'])) {
 
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
 
     <!-- CSS personalizado -->
     <link rel="stylesheet" href="style.css">
@@ -196,14 +204,13 @@ if (isset($_GET['detalle'])) {
 </head>
 
 <body>
-
     <!-- ===== NAVBAR ===== -->
     <nav class="navbar navbar-expand-lg fixed-top" id="navbar">
         <div class="container">
-            <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
             <div class="collapse navbar-collapse justify-content-center w-100" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link text-white" href="index.php">Inicio</a></li>
@@ -219,12 +226,12 @@ if (isset($_GET['detalle'])) {
 
     <!-- ===== MENSAJES ===== -->
     <?php if (isset($_GET['success'])): ?>
-        <div class="alert alert-success text-center mt-5">¡Noticia añadida correctamente!</div>
+    <div class="alert alert-success text-center mt-5">¡Noticia añadida correctamente!</div>
     <?php elseif (isset($_GET['error'])): ?>
-        <div class="alert alert-danger text-center mt-5"><?= htmlspecialchars($_GET['error']) ?></div>
+    <div class="alert alert-danger text-center mt-5"><?= htmlspecialchars($_GET['error']) ?></div>
     <?php endif; ?>
 
-    <!-- ===== CARRUSEL ===== -->
+    <!-- CARRUSEL -->
     <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
@@ -232,15 +239,20 @@ if (isset($_GET['detalle'])) {
                 <div class="carousel-caption">
                     <h1>Bienvenido a</h1>
                     <p>Noticias Arangoya</p>
-                    <button class="btn btn-shadow">Inicio</button>
+                    <a href="index.php">
+                        <button class="btn btn-shadow">Inicio</button>
+                    </a>
                 </div>
             </div>
             <div class="carousel-item">
                 <img src="https://picsum.photos/1920/1080?random=2" class="d-block w-100" alt="slide2">
                 <div class="carousel-caption">
-                    <h1>Trending</h1>
+                    <h1>Destacado</h1>
                     <p>Visita las noticias trending actuales</p>
-                    <button class="btn btn-shadow">Trending</button>
+                    <a href="noticiaUno.php">
+                        <button class="btn btn-shadow">Destacado</button>
+                    </a>
+
                 </div>
             </div>
             <div class="carousel-item">
@@ -248,7 +260,32 @@ if (isset($_GET['detalle'])) {
                 <div class="carousel-caption">
                     <h1>DAW2</h1>
                     <p>Descubre las noticias de la clase de DAW2</p>
-                    <button class="btn btn-shadow">Descúbrelo</button>
+                    <a href="noticiaDos.php">
+                        <button class="btn btn-shadow">Descúbrelo</button>
+                    </a>
+
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://picsum.photos/1920/1080?random=2" class="d-block w-100" alt="slide2">
+                <div class="carousel-caption">
+                    <h1>Arangoya</h1>
+                    <p>Visita las noticias de el centro</p>
+                    <a href="noticiaTres.php">
+                        <button class="btn btn-shadow">Haz click</button>
+                    </a>
+
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://picsum.photos/1920/1080?random=2" class="d-block w-100" alt="slide2">
+                <div class="carousel-caption">
+                    <h1>Formulario</h1>
+                    <p>Añade aqui tu noticia</p>
+                    <a href="addNoticia.php">
+                        <button class="btn btn-shadow">Añadir</button>
+                    </a>
+
                 </div>
             </div>
             <div class="carousel-item">
@@ -256,7 +293,10 @@ if (isset($_GET['detalle'])) {
                 <div class="carousel-caption">
                     <h1>Soporte</h1>
                     <p>¿Tienes alguna duda o problema? Contacta con nosotros</p>
-                    <button class="btn btn-shadow">Pregúntanos</button>
+                    <a href="soporte.php">
+                        <button class="btn btn-shadow">Pregúntanos</button>
+                    </a>
+
                 </div>
             </div>
         </div>
@@ -267,7 +307,8 @@ if (isset($_GET['detalle'])) {
             <span class="carousel-control-next-icon"></span>
         </button>
     </div>
-    <!-- ===== SECCIÓN DE BIENVENIDA ===== -->
+
+    <!-- SECCIÓN DE BIENVENIDA -->
     <section class="content py-5 text-center">
         <div class="container">
             <h2>Visita nuestras secciones de noticias</h2>
@@ -275,12 +316,13 @@ if (isset($_GET['detalle'])) {
                 Bienvenido a Noticias Arangoya, un portal dinámico donde podrás crear,
                 compartir y explorar las noticias más recientes de nuestra comunidad educativa.
                 Aquí los estudiantes y docentes publican artículos,
-                comparten novedades y se mantienen informados de todo lo que ocurre en el entorno académico y tecnológico.
+                comparten novedades y se mantienen informados de todo lo que ocurre en el entorno académico y
+                tecnológico.
             </p>
         </div>
     </section>
 
-    <!-- ===== FILTROS ===== -->
+    <!-- ===== FILTROS DE CATEGORÍA ===== -->
     <div class="container mt-4">
         <h2>Filtrar Noticias</h2>
         <form method="GET" class="row g-2 mb-4">
@@ -291,34 +333,30 @@ if (isset($_GET['detalle'])) {
             <div class="col-md-4">
                 <select name="mes" class="form-select">
                     <option value="">Filtrar por mes</option>
-                    <?php for ($m = 1; $m <= 12; $m++):
+                    <?php for ($m = 1; $m <= 12; $m++): 
                         $mes = str_pad($m, 2, '0', STR_PAD_LEFT); ?>
-                        <option value="<?= $mes ?>" <?= ($filtrarMes == $mes) ? 'selected' : '' ?>><?= $mes ?></option>
+                    <option value="<?= $mes ?>" <?= ($filtrarMes == $mes) ? 'selected' : '' ?>><?= $mes ?></option>
                     <?php endfor; ?>
                 </select>
             </div>
             <div class="col-md-4">
                 <select name="categoria" class="form-select">
                     <option value="">Filtrar por categoría</option>
-                    <?php
-                    // Obtener categorías únicas de las noticias
-                    $categorias = array_unique(array_map(function ($n) {
-                        return $n['categoria'] ?? '';
-                    }, $_SESSION['noticias']));
+                    <?php 
+                    $categorias = array_unique(array_map(fn($n) => $n['categoria'] ?? '', $_SESSION['noticias']));
                     foreach ($categorias as $cat):
                         if ($cat): ?>
-                            <option value="<?= htmlspecialchars($cat) ?>" <?= ($filtrarCategoria == $cat) ? 'selected' : '' ?>><?= htmlspecialchars($cat) ?></option>
-                    <?php
+                    <option value="<?= htmlspecialchars($cat) ?>" <?= ($filtrarCategoria == $cat) ? 'selected' : '' ?>>
+                        <?= htmlspecialchars($cat) ?>
+                    </option>
+                    <?php 
                         endif;
                     endforeach; ?>
                 </select>
             </div>
             <div class="row mt-3">
-                <div class="col-md-2">
-                    <button type="submit" class="btn btn-danger w-100">Filtrar</button>
-                </div>
-                <div class="col-md-2">
-                    <a href="index.php?ordenar=1" class="btn btn-danger w-100">Ordenar por fecha ↓</a>
+                <div class="col-md-2"><button type="submit" class="btn btn-danger w-100">Filtrar</button></div>
+                <div class="col-md-2"><a href="index.php?ordenar=1" class="btn btn-danger w-100">Ordenar por fecha ↓</a>
                 </div>
             </div>
         </form>
@@ -351,9 +389,20 @@ if (isset($_GET['detalle'])) {
                 </div>
                 <div class="col-md-4 mb-3">
                     <h5>Síguenos</h5>
-                    <a href="#" class="me-2 text-white">🐦</a>
-                    <a href="#" class="me-2 text-white">📘</a>
-                    <a href="#" class="text-white">📸</a>
+                    <div class="icons">
+                        <a href="https://x.com/?lang=es" class="social x me-2" target="_blank">
+                            <i class="bi bi-x-lg"></i>
+                        </a>
+                        <a href="https://www.instagram.com/" class="social instagram me-2" target="_blank">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                        <a href="https://www.facebook.com/" class="social facebook me-2" target="_blank">
+                            <i class="bi bi-facebook"></i>
+                        </a>
+                        <a href="https://wa.me/1234567890" class="social whatsapp" target="_blank">
+                            <i class="bi bi-whatsapp"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

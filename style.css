@@ -5,14 +5,17 @@ body {
 }
 
 /* ===== NAVBAR ===== */
+#navbar,
+#navbarUno {
+  transition: background 0.4s ease, box-shadow 0.4s ease;
+}
+
 #navbar {
   background: transparent;
-  transition: background 0.4s ease, box-shadow 0.4s ease;
 }
 
 #navbar.scrolled {
   background: rgba(178, 34, 34, 0.95);
-  /* rojo elegante con transparencia */
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
 }
 
@@ -64,8 +67,6 @@ body {
 @media (max-width: 991px) {
   .navbar-collapse {
     background: rgba(178, 34, 34, 0.95);
-    /* rojo elegante en móvil */
-
     backdrop-filter: blur(10px);
     border-radius: 0 0 12px 12px;
     padding: 15px 0;
@@ -103,6 +104,26 @@ body {
   font-size: 1.3rem;
 }
 
+/* Botones dentro del carrusel */
+.carousel-caption .btn-shadow {
+  background-color: #b22222;
+  /* tu rojo original */
+  color: #fff !important;
+  /* fuerza el color blanco */
+  transition: all 0.3s ease;
+}
+
+.carousel-caption .btn-shadow:hover {
+  background-color: #b22222;
+  /* mantiene el rojo */
+  color: #fff !important;
+  /* mantiene blanco */
+  box-shadow: 0 8px 20px rgba(178, 34, 34, 0.5);
+  /* tu glow existente */
+  transform: translateY(-3px);
+}
+
+
 /* ===== CONTENIDO ===== */
 .content {
   background: #f8f9fa;
@@ -114,15 +135,15 @@ body {
   position: relative;
   overflow: hidden;
   border-radius: 12px;
+  height: 350px;
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 4px 15px rgba(178, 34, 34, 0.4);
-  /* sombra roja inicial */
 }
 
 .cards .card-hover img {
   width: 100%;
-  display: block;
+  height: 100%;
   border-radius: 12px;
   transition: filter 0.3s ease, transform 0.3s ease;
 }
@@ -145,16 +166,6 @@ body {
   padding: 20px;
 }
 
-.cards .card-hover h3 {
-  margin-bottom: 10px;
-  font-size: 1.5rem;
-}
-
-.cards .card-hover p {
-  font-size: 1rem;
-}
-
-/* Hover: escala, gris en la imagen y overlay visible */
 .cards .card-hover:hover img {
   filter: grayscale(100%) brightness(70%);
   transform: scale(1.05);
@@ -164,66 +175,45 @@ body {
   opacity: 1;
 }
 
-/* Hover: intensifica la sombra roja y agrega glow */
 .cards .card-hover:hover {
   transform: scale(1.05);
-  box-shadow:
-    0 8px 25px rgba(178, 34, 34, 0.6),
-    /* sombra principal */
-    0 0 20px rgba(178, 34, 34, 0.5),
-    /* glow rojo */
-    0 0 40px rgba(178, 34, 34, 0.3);
-  /* halo más difuso */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 8px 25px rgba(178, 34, 34, 0.6), 0 0 20px rgba(178, 34, 34, 0.5), 0 0 40px rgba(178, 34, 34, 0.3);
 }
 
-/*--CSS addNoticia.php--*/
+.cards .card-hover h3 {
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+}
 
+.cards .card-hover p {
+  font-size: 1rem;
+}
+
+/* ===== FORMULARIOS ===== */
 #navbar2 {
   background: #c52b2b;
 }
 
-#titulo:focus {
+#titulo:focus,
+#autor:focus,
+#fecha:focus,
+#noticia:focus,
+#nombre:focus,
+#correo:focus,
+#phone:focus,
+#consulta:focus {
   outline: none;
   box-shadow: 0 0 0 0.25rem rgba(255, 0, 0, 0.5);
-  /* rojo con transparencia */
-}
-
-#autor:focus {
-  outline: none;
-  box-shadow: 0 0 0 0.25rem rgba(255, 0, 0, 0.5);
-  /* rojo con transparencia */
-}
-
-#fecha:focus {
-  outline: none;
-  box-shadow: 0 0 0 0.25rem rgba(255, 0, 0, 0.5);
-  /* rojo con transparencia */
-}
-
-#noticia:focus {
-  outline: none;
-  box-shadow: 0 0 0 0.25rem rgba(255, 0, 0, 0.5);
-  /* rojo con transparencia */
 }
 
 .mi-boton {
   margin-bottom: 10px;
   background: #c52b2b;
-
 }
-
 
 .mi-boton:hover {
   background-color: #333;
-  box-shadow:
-    0 8px 25px rgba(178, 34, 34, 0.6),
-    /* sombra principal */
-    0 0 20px rgba(178, 34, 34, 0.5),
-    /* glow rojo */
-    0 0 20px rgba(178, 34, 34, 0.3);
-  /* halo más difuso */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 8px 25px rgba(178, 34, 34, 0.6), 0 0 20px rgba(178, 34, 34, 0.5), 0 0 20px rgba(178, 34, 34, 0.3);
 }
 
 .mi-boton:focus,
@@ -237,7 +227,7 @@ body {
   transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
-/* ===== FOOTER COLUMNS ===== */
+/* ===== FOOTER ===== */
 .footer-columns {
   background: #c52b2b;
   color: #fff;
@@ -250,13 +240,12 @@ body {
 }
 
 .footer-columns a {
-  color: #ffffff;
+  color: #fff;
   text-decoration: none;
   transition: color 0.3s ease, transform 0.2s ease;
 }
 
 .footer-columns a:hover {
-  color: #fff;
   transform: scale(1.05);
 }
 
@@ -269,6 +258,71 @@ body {
   list-style: none;
 }
 
+/* ===== ICONOS SOCIALES ===== */
+.footer-columns .icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  padding: 10px 0;
+}
+
+.footer-columns .icons a,
+.footer-columns .icons a i {
+  color: #fff !important;
+  font-size: 1.3rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.footer-columns .icons a.social.instagram:hover {
+  background: #690123;
+  box-shadow: 0 0 15px #690123;
+  color: #fff !important;
+}
+
+.footer-columns .icons a.social.x:hover {
+  background: #000;
+  box-shadow: 0 0 15px #000;
+  color: #fff !important;
+}
+
+.footer-columns .icons a.social.facebook:hover {
+  background: #1877F2;
+  box-shadow: 0 0 15px #1877F2;
+  color: #fff !important;
+}
+
+.footer-columns .icons a.social.whatsapp:hover {
+  background: #25D366;
+  box-shadow: 0 0 15px #25D366;
+  color: #fff !important;
+}
+
+/* ===== CENTRADO COLUMNA 3 FOOTER ===== */
+.footer-columns .col-md-4:nth-child(3) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.footer-columns .col-md-4:nth-child(3) h5 {
+  margin-bottom: 15px;
+}
+
+.footer-columns .col-md-4:nth-child(3) .icons {
+  justify-content: center;
+}
+
+/* ===== BOTONES ===== */
 .btn-shadow {
   background-color: #b22222;
   color: #fff;
@@ -284,68 +338,49 @@ body {
 .btn-shadow:hover {
   transform: translateY(-3px);
   box-shadow: 0 8px 20px rgba(178, 34, 34, 0.5);
-<<<<<<< HEAD
-}       
-.title_class{
-    font-family: 'Abril Fatface', serif;
-    color: #000000;
-    font-weight: 700;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    margin: auto;
-=======
 }
 
-.title_class {
-  font-family: 'Abril Fatface', serif;
-  color: #000000;
-  font-weight: 700;
-  margin-top: 20px;
-  margin-bottom: 20px;
-
-  position: margin auto;
->>>>>>> ba2868fa5651fdcc972990e29351a6f740556b1b
-}
-
+/* ===== TITULOS ===== */
+.title_class,
 .titleSecondary_class {
   font-family: 'Abril Fatface', serif;
-  color: #000000;
+  color: #000;
   font-weight: 700;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  position: margin auto;
+  margin: 20px 0;
 }
 
 .p_notice {
   font-family: 'Great Vibes', cursive;
-  color: #333333;
+  color: #333;
   font-size: 1.1rem;
   line-height: 1.6;
   margin: 20px auto;
   max-width: 800px;
   text-align: justify;
 }
-#nombre:focus {
-  outline: none;
-  box-shadow: 0 0 0 0.25rem rgba(255, 0, 0, 0.5);
-  /* rojo con transparencia */
+
+/* ===== DETALLE CARD ===== */
+.detalle-card {
+  max-width: 900px;
+  margin: 200px auto 150px;
+  background-color: #f5f5f5;
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-#correo:focus {
-  outline: none;
-  box-shadow: 0 0 0 0.25rem rgba(255, 0, 0, 0.5);
-  /* rojo con transparencia */
+.detalle-card h2 {
+  margin-bottom: 20px;
 }
 
-#phone:focus {
-  outline: none;
-  box-shadow: 0 0 0 0.25rem rgba(255, 0, 0, 0.5);
-  /* rojo con transparencia */
+.detalle-card img {
+  max-width: 100%;
+  border-radius: 10px;
+  margin-bottom: 15px;
 }
 
-#consulta:focus {
-  outline: none;
-  box-shadow: 0 0 0 0.25rem rgba(255, 0, 0, 0.5);
-  /* rojo con transparencia */
+.detalle-card .info {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 20px;
 }
-

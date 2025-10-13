@@ -1,22 +1,48 @@
+<?php
+session_start();
+
+// Verificar que nos pasan un id
+if (!isset($_GET['id'])) {
+    header('Location: index.php');
+    exit;
+}
+
+$id = intval($_GET['id']);
+
+// Buscar la noticia en la sesión
+$noticia = null;
+foreach ($_SESSION['noticias'] as $n) {
+    if ($n['id'] === $id) {
+        $noticia = $n;
+        break;
+    }
+}
+
+if (!$noticia) {
+    echo "<p>Noticia no encontrada.</p>";
+    exit;
+}
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Soporte</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Noticias</title>
 
     <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- CSS personalizado -->
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="img/logo.png">
+
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
+    <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg fixed-top" id="navbarUno">
         <div class="container">
             <a class="navbar-brand text-white fw-bold" href="#"></a>
@@ -33,42 +59,43 @@
                     <li class="nav-item"><a class="nav-link text-white" href="noticiaTres.php">Arangoya</a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="addNoticia.php">Formulario</a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="soporte.php">Soporte</a></li>
-
                 </ul>
             </div>
         </div>
     </nav>
 
-    <div class="containerSoporte text-center mt-5 pt-5">
-        <h1 class="titulo">¡Hola!</h1>
-        <h1 class="subtitulo ">¿Necesitas ayuda?</h1>
-    </div>
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="flex-grow-1">
+        <div class="detalle-card">
+            <div class="row align-items-center">
+                <!-- TEXTO -->
+                <div class="col-md-8">
+                    <h2><?= htmlspecialchars($noticia['titulo']) ?></h2>
+                    <div class="info">
+                        <p><?= nl2br(htmlspecialchars($noticia['texto'])) ?></p>
+                        <p><strong>Autor:</strong> <?= htmlspecialchars($noticia['autor']) ?></p>
+                        <p><strong>Fecha:</strong> <?= htmlspecialchars($noticia['fecha']) ?></p>
+                        <?php if (!empty($noticia['categoria'])): ?>
+                        <p><strong>Categoría:</strong> <?= htmlspecialchars($noticia['categoria']) ?></p>
+                        <?php endif; ?>
+                        <p><?= date("Y:m:d") ?></p>
+                    </div>
+                    <a href="index.php" class="btn btn-secondary">Volver a Noticias</a>
+                </div>
 
-    <div class="container mt-5 mb-5">
-        <form method="post">
-            <div class="mb-3">
-                <label class="form-label" id="nombre">Nombre: </label>
-                <input type="text" class="form-control" placeholder="Escribe tu nombre y apellidos" required>
+                <!-- IMAGEN -->
+                <div class="col-md-4 text-center">
+                    <?php if (!empty($noticia['imagen'])): ?>
+                    <img src="<?= htmlspecialchars($noticia['imagen']) ?>"
+                        alt="<?= htmlspecialchars($noticia['titulo']) ?>"
+                        class="img-fluid rounded shadow mb-3 detalle-img">
+                    <?php endif; ?>
+                </div>
             </div>
-            <div class="mb-3">
-                <label class="form-label" id="correo">Correo: </label>
-                <input type="email" class="form-control" placeholder="Escribe tu correo" required>
-            </div>
-            <div class="mb-3">
-                <label for="phone" class="form-label">Número de teléfono</label>
-                <input type="tel" id="phone" name="phone" class="form-control"
-                    placeholder="Escribe tu número de teléfono" inputmode="numeric" pattern="[0-9]{9}" maxlength="9"
-                    required>
-            </div>
-            <div class="mb-3">
-                <label class="label-form" id="consulta">Consulta: </label>
-                <textarea class="form-control mb-3" rows="5" placeholder="Escribe tu consulta aquí..."
-                    required></textarea>
-            </div>
+        </div>
+    </main>
 
-            <button type="submit" class="btn btn-danger mi-boton" id="boton">Enviar</button>
-        </form>
-    </div>
+
     <!-- ===== FOOTER ===== -->
     <footer class="footer footer-columns py-5 text-white">
         <div class="container">
@@ -106,10 +133,7 @@
         </div>
     </footer>
 
-    <!-- Bootstrap 5 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="script.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
