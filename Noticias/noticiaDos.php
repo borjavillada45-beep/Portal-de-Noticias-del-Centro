@@ -43,18 +43,19 @@ $paginaActiva = "noticias";
   <div class="container my-4">
     <div class="row d-flex align-items-center">
       <div class="col-md-8">
-        <h2 class="title_class">¡Ningun alumno de 2º de DAW se va de erasmus!</h2>
+        <h2 class="title_class">¡Del barrio bajo a Polonia!</h2>
         <p class="p_notice">
-          Después de dos años de guerra que dejaron más de 67.000 muertos, Israel y Hamás han aceptado la primera fase del plan de paz impulsado por Estados Unidos. El acuerdo fue anunciado por Donald Trump a través de su red social Truth Social, donde afirmó que “todos los rehenes serán liberados muy pronto” y que Israel retirará sus tropas a una línea acordada como primer paso hacia una paz “fuerte, duradera y eterna”.
-          El pacto incluye el intercambio de prisioneros, con la liberación de 48 rehenes israelíes —la mayoría fallecidos— a cambio de unos 2.000 presos palestinos. También contempla la retirada del Ejército israelí de la Franja de Gaza, la entrada de ayuda humanitaria y la creación de un Gobierno tecnócrata palestino para administrar Gaza. Hamás ha aceptado el acuerdo, aunque ha expresado reservas sobre su exclusión política en el futuro gobierno de la Franja.
-          Las negociaciones se llevaron a cabo en Egipto, con la participación de representantes de Israel, Hamás, Qatar, Turquía, Egipto y Estados Unidos. El acuerdo fue posible gracias a la mediación internacional, y se espera que en los próximos días se liberen los rehenes y se inicie la retirada militar israelí.
-          Hamás ha pedido garantías de que Israel no reanudará los bombardeos tras recuperar a los rehenes, y ha instado a los países garantes —incluidos Catar y Turquía— a vigilar el cumplimiento del pacto. Por su parte, Estados Unidos se ha comprometido a enviar ayuda humanitaria a través de la ONU.
-          Este tratado representa el primer avance diplomático tangible desde el inicio del conflicto en octubre de 2023. Aunque aún quedan fases por definir, como la reconstrucción de Gaza y el desarme de Hamás, el acuerdo marca un punto de inflexión en la guerra y abre una vía hacia la desescalada y la paz duradera
+          <b>Bermeo, Bizkaia </b>– Enertiz, una joven estudiante de segundo curso de Desarrollo de Aplicaciones Web (DAW), ha sido seleccionada como la única alumna de su clase para participar en el programa Erasmus en Oświęcim, Polonia. Lo que podría parecer una simple beca internacional, para ella representa mucho más: un giro inesperado en una vida marcada por la lucha, la incertidumbre y la esperanza. <br>
+          Enertiz vive en condiciones de extrema precariedad. Su hogar, en una zona humilde de Bermeo, apenas cuenta con lo básico. A pesar de ello, cada mañana se levanta con la determinación de cambiar su destino. “Hay días en los que no sé si podré comer caliente, pero nunca he dejado de estudiar”, confiesa con la voz entrecortada. <br>
+          Lo más sorprendente de su selección es que no alcanzó la media mínima exigida de 7 puntos. Sin embargo, el comité del centro educativo decidió mirar más allá de los números. Vieron en ella una historia de superación, una voluntad férrea y un potencial que no puede medirse con una nota.
+          “Enertiz no solo merece esta oportunidad, la necesita”, declaró emocionada la directora del centro. “Sabemos que este viaje puede marcar un antes y un después en su vida, y por eso hemos decidido cubrir los siguientes gastos: desde el desplazamiento hasta el alojamiento en un apartamento en Oświęcim”. <br>
+          La ciudad polaca, conocida por su historia y su entorno académico, será el nuevo hogar de Enertiz durante los próximos meses. Allí podrá estudiar, crecer y, sobre todo, respirar un aire nuevo, lejos de las dificultades que la han acompañado desde pequeña.
+          “Es como si alguien me hubiera dicho: ‘No estás sola. Mereces algo mejor’”, dice Enertiz, con lágrimas en los ojos. “No sé qué me espera en Polonia, pero sé que este es el primer paso hacia una vida distinta”.
         </p>
       </div>
       <div class="col-md-4 d-flex flex-column justify-content-center align-items-center">
-        <img src="../img/Palestina.jpg" alt="noticia1" class="img-fluid rounded shadow mb-3">
-        <img src="../img/Donald Trump.webp" alt="noticia1" class="img-fluid rounded shadow">
+        <img src="../img/Enerica.jpeg" alt="noticia1" class="img-fluid rounded shadow mb-3">
+        <img src="../img/oswiecim.webp" alt="noticia1" class="img-fluid rounded shadow">
       </div>
     </div>
   </div>

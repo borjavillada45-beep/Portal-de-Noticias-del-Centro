@@ -30,7 +30,7 @@
                     <li class="nav-item"><a class="nav-link text-white" href="#">Destacado</a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="Noticias/noticiaDos.php">DAW2</a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="#">Arangoya</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="#">Formulario</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="addNoticia.php">Formulario</a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="#">Soporte</a></li>
 
                 </ul>

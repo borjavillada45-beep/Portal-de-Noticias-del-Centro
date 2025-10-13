@@ -282,13 +282,14 @@ body {
 .btn-shadow:hover {
   transform: translateY(-3px);
   box-shadow: 0 8px 20px rgba(178, 34, 34, 0.5);
-}
+}       
 .title_class{
     font-family: 'Abril Fatface', serif;
     color: #000000;
     font-weight: 700;
     margin-top: 20px;
     margin-bottom: 20px;
+    margin: auto;
 }
 .p_notice{
     font-family: 'Great Vibes', cursive;
