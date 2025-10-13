@@ -284,6 +284,16 @@ body {
 .btn-shadow:hover {
   transform: translateY(-3px);
   box-shadow: 0 8px 20px rgba(178, 34, 34, 0.5);
+<<<<<<< HEAD
+}       
+.title_class{
+    font-family: 'Abril Fatface', serif;
+    color: #000000;
+    font-weight: 700;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin: auto;
+=======
 }
 
 .title_class {
@@ -294,6 +304,7 @@ body {
   margin-bottom: 20px;
 
   position: margin auto;
+>>>>>>> ba2868fa5651fdcc972990e29351a6f740556b1b
 }
 
 .titleSecondary_class {
