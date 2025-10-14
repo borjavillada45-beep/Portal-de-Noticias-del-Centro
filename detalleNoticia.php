@@ -26,33 +26,25 @@ if (!$noticia) {
 
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-     <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Noticias</title>
 
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-
-
-    <!-- CSS personalizado -->
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="img/logo.png">
-
 </head>
-
-<body class="d-flex flex-column min-vh-100">
+<body>
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg fixed-top" id="navbarUno">
         <div class="container">
             <a class="navbar-brand text-white fw-bold" href="#"></a>
-            <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarNav">
+            <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
             <div class="collapse navbar-collapse justify-content-center w-125" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link text-white" href="index.php">Inicio</a></li>
@@ -66,48 +58,31 @@ if (!$noticia) {
         </div>
     </nav>
 
-    <!-- CONTENIDO PRINCIPAL -->
-    <main class="flex-grow-1">
-        <div class="detalle-card">
-            <div class="row align-items-center">
-                <!-- TEXTO -->
-                <div class="col-md-8">
-                    <h2><b><?= htmlspecialchars($noticia['titulo']) ?></b></h2>
-                    <div class="info">
-                        <p><?= nl2br(htmlspecialchars($noticia['texto'])) ?></p>
-                        <p><strong>Autor:</strong> <?= htmlspecialchars($noticia['autor']) ?></p>
-                        <p><strong>Fecha:</strong> <?= htmlspecialchars($noticia['fecha']) ?></p>
-                        <?php if (!empty($noticia['categoria'])): ?>
-                        <p><strong>Categoría:</strong> <?= htmlspecialchars($noticia['categoria']) ?></p>
-                        <?php endif; ?>
-                        <p><?= date("Y:m:d") ?></p>
-                    </div>
-                    <a href="index.php" class="btn btn-danger">Volver a Noticias</a>
-                </div>
-
-                <!-- IMAGEN -->
-                <div class="col-md-4 text-center">
-                    <?php if (!empty($noticia['imagen'])): ?>
-                    <img src="<?= htmlspecialchars($noticia['imagen']) ?>"
-                        alt="<?= htmlspecialchars($noticia['titulo']) ?>"
-                        class="img-fluid rounded shadow mb-3 detalle-img">
-                    <?php endif; ?>
-                </div>
+    <!-- CONTENIDO -->
+    <h1 class="mt-5 pt-5 title_class text-center">Noticia</h1>
+    <div class="container my-4">
+        <div class="row d-flex align-items-start">
+            <div class="col-md-8">
+                <h2 class="titleSecondary_class m-3"><b><?= htmlspecialchars($noticia['titulo']) ?></b></h2>
+                <p class="p_notice m-3"><?= nl2br(htmlspecialchars($noticia['texto'])) ?></p>
+                <div class="m-3"><?= date("Y:m:d") ?></div>
+            </div>
+            <div class="col-md-4 d-flex justify-content-center align-items-start">
+                <img alt="noticia1" class="img-fluid rounded shadow" src="<?= htmlspecialchars($noticia['imagen']) ?>">
             </div>
         </div>
-    </main>
+    </div>
 
-
-    <!-- ===== FOOTER ===== -->
+    <!-- FOOTER -->
     <footer class="footer footer-columns py-5 text-white">
         <div class="container">
             <div class="row">
                 <div class="col-md-4 mb-3">
-                    <h5><b>Arangoya News</b></h5>
+                    <h5>Arangoya News</h5>
                     <p>Transformando ideas en soluciones digitales.</p>
                 </div>
                 <div class="col-md-4 mb-3">
-                    <h5><b>Enlaces</b></h5>
+                    <h5>Enlaces</h5>
                     <ul class="list-unstyled">
                         <li><a href="index.php" class="text-white">Inicio</a></li>
                         <li><a href="addNoticia.php" class="text-white">Formulario</a></li>
@@ -115,27 +90,20 @@ if (!$noticia) {
                     </ul>
                 </div>
                 <div class="col-md-4 mb-3">
-                    <h5><b>Síguenos</b></h5>
+                    <h5>Síguenos</h5>
                     <div class="icons">
-                        <a href="https://x.com/?lang=es" class="social x me-2" target="_blank">
-                            <i class="bi bi-x-lg"></i>
-                        </a>
-                        <a href="https://www.instagram.com/" class="social instagram me-2" target="_blank">
-                            <i class="bi bi-instagram"></i>
-                        </a>
-                        <a href="https://www.facebook.com/" class="social facebook me-2" target="_blank">
-                            <i class="bi bi-facebook"></i>
-                        </a>
-                        <a href="https://wa.me/1234567890" class="social whatsapp" target="_blank">
-                            <i class="bi bi-whatsapp"></i>
-                        </a>
+                        <a href="https://x.com/?lang=es" class="social x me-2" target="_blank"><i class="bi bi-x-lg"></i></a>
+                        <a href="https://www.instagram.com/" class="social instagram me-2" target="_blank"><i class="bi bi-instagram"></i></a>
+                        <a href="https://www.facebook.com/" class="social facebook me-2" target="_blank"><i class="bi bi-facebook"></i></a>
+                        <a href="https://wa.me/1234567890" class="social whatsapp" target="_blank"><i class="bi bi-whatsapp"></i></a>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
 </body>
-
 </html>

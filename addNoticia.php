@@ -41,7 +41,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = 'Debe seleccionar una categoría.';
     } elseif (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $fecha)) {
         $error = 'La fecha no tiene un formato válido (YYYY-MM-DD).';
-    } else {
+    } elseif (str_word_count($texto) < 100) {
+    $error = 'La noticia debe tener al menos 100 palabras.';
+    }else {
         // Procesar imagen si se sube
         if (isset($_FILES['imagen']) && $_FILES['imagen']['name']) {
             $imagen = 'img/' . basename($_FILES['imagen']['name']);
@@ -115,12 +117,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <form method="POST" action="addNoticia.php" enctype="multipart/form-data" class="p-4 rounded ">
             <div class="mb-3">
                 <label class="form-label">Título</label>
-                <input type="text" class="form-control" name="titulo"
+                <input type="text" class="form-control" name="titulo" id="titulo"
                     value="<?= htmlspecialchars($_POST['titulo'] ?? '') ?>" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">Autor</label>
-                <input type="text" class="form-control" name="autor"
+                <input type="text" class="form-control" name="autor" id="autor"
                     value="<?= htmlspecialchars($_POST['autor'] ?? '') ?>" required>
             </div>
             <div class="mb-3">
@@ -130,7 +132,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <div class="mb-3">
                 <label class="form-label">Categoría</label>
-                <select name="categoria" class="form-select" required>
+                <select name="categoria" class="form-select" required id="categoria">
                     <option value="" disabled <?= !isset($_POST['categoria']) ? 'selected' : '' ?>>Seleccione una
                         categoría</option>
                     <?php
@@ -144,11 +146,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <div class="mb-3">
                 <label class="form-label">Imagen</label>
-                <input type="file" class="form-control" name="imagen">
+                <input type="file" class="form-control" name="imagen" id="imagen">
             </div>
             <div class="mb-3">
                 <label class="form-label">Noticia</label>
-                <textarea class="form-control" name="noticia" rows="5"
+                <textarea class="form-control" name="noticia" rows="5" id="noticia"
                     required><?= htmlspecialchars($_POST['noticia'] ?? '') ?></textarea>
             </div>
             <button type="submit" class="btn btn-danger w-100">Publicar Noticia</button>
