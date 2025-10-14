@@ -144,7 +144,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <div class="mb-3">
                 <label class="form-label">Imagen</label>
-                <input type="file" class="form-control" name="imagen">
+                <input type="file" class="form-control" name="imagen" required
             </div>
             <div class="mb-3">
                 <label class="form-label">Noticia</label>

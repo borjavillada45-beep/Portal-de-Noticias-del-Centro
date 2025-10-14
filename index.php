@@ -251,7 +251,7 @@ if (isset($_GET['detalle'])) {
     <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="https://picsum.photos/1920/1080?random=1" class="d-block w-100" alt="slide1">
+                <img src="img/Bienvenido.jpg" class="d-block w-100" alt="slide1">
                 <div class="carousel-caption">
                     <h1>Bienvenido a</h1>
                     <p>Noticias Arangoya</p>
@@ -261,7 +261,7 @@ if (isset($_GET['detalle'])) {
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="https://picsum.photos/1920/1080?random=2" class="d-block w-100" alt="slide2">
+                <img src="img/destacadosDos.jpg" class="d-block w-100" alt="slide2">
                 <div class="carousel-caption">
                     <h1>Destacado</h1>
                     <p>Visita las noticias trending actuales</p>
@@ -272,7 +272,7 @@ if (isset($_GET['detalle'])) {
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="https://picsum.photos/1920/1080?random=3" class="d-block w-100" alt="slide3">
+                <img src="img/dawDos.jpg" class="d-block w-100" alt="slide3">
                 <div class="carousel-caption">
                     <h1>DAW2</h1>
                     <p>Descubre las noticias de la clase de DAW2</p>
@@ -283,7 +283,7 @@ if (isset($_GET['detalle'])) {
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="https://picsum.photos/1920/1080?random=2" class="d-block w-100" alt="slide2">
+                <img src="img/arangoya.jpg" class="d-block w-100" alt="slide2">
                 <div class="carousel-caption">
                     <h1>Arangoya</h1>
                     <p>Visita las noticias de el centro</p>
@@ -294,7 +294,7 @@ if (isset($_GET['detalle'])) {
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="https://picsum.photos/1920/1080?random=2" class="d-block w-100" alt="slide2">
+                <img src="img/Formulario.webp" class="d-block w-100" alt="slide2">
                 <div class="carousel-caption">
                     <h1>Formulario</h1>
                     <p>Añade aqui tu noticia</p>
@@ -305,7 +305,7 @@ if (isset($_GET['detalle'])) {
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="https://picsum.photos/1920/1080?random=4" class="d-block w-100" alt="slide4">
+                <img src="img/soporte.webp" class="d-block w-100" alt="slide4">
                 <div class="carousel-caption">
                     <h1>Soporte</h1>
                     <p>¿Tienes alguna duda o problema? Contacta con nosotros</p>
